@@ -1,0 +1,82 @@
+{
+  "name": "backk-frontend-utils",
+  "version": "1.0.0",
+  "description": "Web frontend utils for Backk microservices",
+  "author": {
+    "name": "Petri Silen",
+    "email": "petri.silen@silensoft.com"
+  },
+  "engines": {
+    "node": ">= 12.19"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backk-node/backk-frontend-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/backk-node/backk-frontend-utils/issues"
+  },
+  "keywords": [
+    "backk",
+    "microservice",
+    "frontend",
+    "web",
+    "utils"
+  ],
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint ./src --ext .ts",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "class-transformer": "0.3.1",
+    "class-validator": "0.11.1",
+    "crypto-js": "^4.1.1",
+    "libphonenumber-js": "1.9.16",
+    "re2": "1.15.9",
+    "reflect-metadata": "0.1.13"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "@types/jest": "25.1.2",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-import": "2.22.1",
+    "jest": "24.9.0",
+    "prettier": "2.4.1",
+    "prettier-plugin-organize-imports": "2.3.4",
+    "rimraf": "3.0.2",
+    "ts-jest": "25.2.0",
+    "ts-loader": "6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "3.9.0",
+    "typescript": "3.9.9"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "node",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
