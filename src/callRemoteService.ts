@@ -17,7 +17,7 @@ export default async function callRemoteService(
       body: serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? ''
+        Authorization: 'Bearer ' + getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? '',
       },
     }
   );
