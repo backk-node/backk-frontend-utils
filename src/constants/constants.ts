@@ -1,5 +1,7 @@
 export const MAX_INT_VALUE = 2147483647;
 
+export const HTTPS_DEFAULT_PORT = '443';
+
 // noinspection MagicNumberJS
 export class Lengths {
   static readonly _1 = 1 as number;
