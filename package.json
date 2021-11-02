@@ -40,7 +40,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "crypto-js": "4.1.1"
+    "crypto-js": "4.1.1",
+    "js-base64": "3.7.2"
   },
   "devDependencies": {
     "@types/crypto-js": "4.0.2",

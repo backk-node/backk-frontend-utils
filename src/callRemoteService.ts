@@ -1,3 +1,4 @@
+import { Base64 } from 'js-base64';
 import { HttpRequestOptions } from './types/HttpRequestOptions';
 import { PromiseErrorOr } from './types/PromiseErrorOr';
 import getJwtFromSessionStorage from './getJwtFromSessionStorage';
@@ -17,7 +18,7 @@ export default async function callRemoteService(
       body: serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? '',
+        Authorization: 'Bearer ' + Base64.encode(getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? ''),
       },
     }
   );
