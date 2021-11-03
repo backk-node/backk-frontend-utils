@@ -1,6 +1,6 @@
 export { default as callRemoteService } from './callRemoteService';
 
-export { BackkError } from './types/BackkError';
+export { BackkError, PossibleBackkError } from './types/BackkError';
 export { PromiseErrorOr } from './types/PromiseErrorOr';
 export { One } from './types/One';
 export { Many } from './types/Many';
