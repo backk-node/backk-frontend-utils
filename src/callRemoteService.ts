@@ -28,5 +28,11 @@ export default async function callRemoteService(
     }
   );
 
-  return response.json();
+  const responseBodyObject = await response.json();
+
+  if (response.ok) {
+    return [responseBodyObject, null];
+  } else {
+    return [null, responseBodyObject];
+  }
 }
