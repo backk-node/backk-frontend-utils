@@ -4,7 +4,6 @@ import { PromiseErrorOr } from './types/PromiseErrorOr';
 import getJwtFromSessionStorage from './getJwtFromSessionStorage';
 import { HTTPS_DEFAULT_PORT } from './constants/constants';
 import validateServiceFunctionArgumentOrThrow from './validation/validateServiceFunctionArgument';
-import { getFromContainer, MetadataStorage } from 'class-validator';
 
 export default async function callRemoteService(
   microserviceName: string,
@@ -15,7 +14,6 @@ export default async function callRemoteService(
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
   try {
-    console.log(getFromContainer(MetadataStorage));
     await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument);
   } catch (error: any) {
     return [
