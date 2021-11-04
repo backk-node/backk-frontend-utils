@@ -15,10 +15,11 @@ export default async function callRemoteService(
   const serverPort = window.location.search
     ? window.location.search.split('serverPort=').pop() ?? HTTPS_DEFAULT_PORT
     : HTTPS_DEFAULT_PORT;
+  const scheme = serverPort === HTTPS_DEFAULT_PORT ? 'https' : 'http';
 
   try {
     const response = await fetch(
-      `https://${window.location.hostname}:${serverPort}/${microserviceName}.${microserviceNamespace}/${serviceFunctionName}`,
+      `${scheme}://${window.location.hostname}:${serverPort}/${microserviceName}.${microserviceNamespace}/${serviceFunctionName}`,
       {
         method: options?.httpMethod ?? 'POST',
         body: serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined,
