@@ -3,6 +3,7 @@ import { HttpRequestOptions } from './types/HttpRequestOptions';
 import { PromiseErrorOr } from './types/PromiseErrorOr';
 import getJwtFromSessionStorage from './getJwtFromSessionStorage';
 import { HTTPS_DEFAULT_PORT } from './constants/constants';
+import validateServiceFunctionArgumentOrThrow from './validation/validateServiceFunctionArgument';
 
 export default async function callRemoteService(
   microserviceName: string,
@@ -12,6 +13,17 @@ export default async function callRemoteService(
   jwtStorageEncryptionKey: string,
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
+  try {
+    await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument);
+  } catch (error: any) {
+    return [
+      null,
+      {
+        message: error.message,
+      },
+    ];
+  }
+
   const serverPort = window.location.search
     ? window.location.search.split('serverPort=').pop() ?? HTTPS_DEFAULT_PORT
     : HTTPS_DEFAULT_PORT;
