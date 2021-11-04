@@ -16,15 +16,17 @@ export default async function callRemoteService(
     ? window.location.search.split('serverPort=').pop() ?? HTTPS_DEFAULT_PORT
     : HTTPS_DEFAULT_PORT;
   const scheme = serverPort === HTTPS_DEFAULT_PORT ? 'https' : 'http';
+  const body = serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined;
 
   try {
     const response = await fetch(
       `${scheme}://${window.location.hostname}:${serverPort}/${microserviceName}.${microserviceNamespace}/${serviceFunctionName}`,
       {
+        body,
         method: options?.httpMethod ?? 'POST',
-        body: serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined,
         headers: {
           'Content-Type': 'application/json',
+          'Content-Length': body?.length.toString() ?? '0',
           Authorization: 'Bearer ' + Base64.encode(getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? ''),
         },
       }
