@@ -1,4 +1,4 @@
-import CurrentPageToken from './CurrentPageToken';
+import CurrentPageToken from './postqueryoperations/CurrentPageToken';
 
 export type Many<T> = {
   metadata: {

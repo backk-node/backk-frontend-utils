@@ -1,20 +1,23 @@
 import { Base64 } from 'js-base64';
 import { HttpRequestOptions } from './types/HttpRequestOptions';
 import { PromiseErrorOr } from './types/PromiseErrorOr';
-import getJwtFromSessionStorage from './getJwtFromSessionStorage';
+import getAccessTokenFromSessionStorage from './getAccessTokenFromSessionStorage';
 import { HTTPS_DEFAULT_PORT } from './constants/constants';
 import validateServiceFunctionArgumentOrThrow from './validation/validateServiceFunctionArgument';
+
+export type ServiceFunctionType = 'create' | 'update' | 'other';
 
 export default async function callRemoteService(
   microserviceName: string,
   serviceFunctionName: string,
+  serviceFunctionType: ServiceFunctionType,
   serviceFunctionArgument: any,
   microserviceNamespace: string,
-  jwtStorageEncryptionKey: string,
+  accessTokenStorageEncryptionKey: string,
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
   try {
-    await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument);
+    await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument, serviceFunctionType);
   } catch (error: any) {
     return [
       null,
@@ -39,7 +42,9 @@ export default async function callRemoteService(
         headers: {
           'Content-Type': 'application/json',
           'Content-Length': body?.length.toString() ?? '0',
-          Authorization: 'Bearer ' + Base64.encode(getJwtFromSessionStorage(jwtStorageEncryptionKey) ?? ''),
+          Authorization:
+            'Bearer ' +
+            Base64.encode(getAccessTokenFromSessionStorage(accessTokenStorageEncryptionKey) ?? ''),
         },
       }
     );
