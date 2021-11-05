@@ -40,6 +40,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "class-transformer": "0.4.0",
+    "class-validator": "0.13.1",
     "crypto-js": "4.1.1",
     "js-base64": "3.7.2"
   },

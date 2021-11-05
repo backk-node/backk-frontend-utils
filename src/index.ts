@@ -6,3 +6,6 @@ export { One } from './types/One';
 export { Many } from './types/Many';
 export { default as DefaultPostQueryOperations } from './types/DefaultPostQueryOperations';
 export { default as _Id } from './types/_id/_Id';
+export { default as convertPlainToInstance } from './validation/convertPlainToInstance';
+
+export * from 'class-validator';

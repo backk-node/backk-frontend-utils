@@ -1,5 +1,7 @@
+import { validateOrReject } from 'class-validator';
+
 export default async function validateServiceFunctionArgumentOrThrow(serviceFunctionArgument: object) {
-  /*try {
+  try {
     await validateOrReject(serviceFunctionArgument, {
       whitelist: true,
       forbidNonWhitelisted: true,
@@ -8,5 +10,5 @@ export default async function validateServiceFunctionArgumentOrThrow(serviceFunc
     throw {
       message: 'Validation error',
     };
-  }*/
+  }
 }
