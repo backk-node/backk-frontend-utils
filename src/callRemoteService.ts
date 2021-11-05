@@ -13,9 +13,18 @@ export default async function callRemoteService(
   serviceFunctionType: ServiceFunctionType,
   serviceFunctionArgument: any,
   microserviceNamespace: string,
-  accessTokenStorageEncryptionKey: string,
+  accessTokenStorageEncryptionKey: string | undefined,
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
+  if (!accessTokenStorageEncryptionKey) {
+    return [
+      null,
+      {
+        message:
+          'Access token storage encryption key is not set. Use Service.setAccessTokenStorageEncryptionKey() function to set the encryption key for services before using them',
+      },
+    ];
+  }
   try {
     await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument, serviceFunctionType);
   } catch (error: any) {
