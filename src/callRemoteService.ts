@@ -21,7 +21,7 @@ export default async function callRemoteService(
       null,
       {
         message:
-          'Access token storage encryption key is not set. Use Service.setAccessTokenStorageEncryptionKey() function to set the encryption key for services before using them',
+          "Access token storage encryption key is not set. Use 'Service.setAccessTokenStorageEncryptionKey()' function to set the encryption key for services before using them",
       },
     ];
   }
