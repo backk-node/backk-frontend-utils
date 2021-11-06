@@ -44,7 +44,8 @@
     "class-validator": "0.13.1",
     "crypto-js": "4.1.1",
     "dayjs": "1.10.7",
-    "js-base64": "3.7.2"
+    "js-base64": "3.7.2",
+    "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
     "@types/crypto-js": "4.0.2",
