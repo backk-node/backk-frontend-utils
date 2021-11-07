@@ -3,7 +3,6 @@ import { HttpRequestOptions } from './types/HttpRequestOptions';
 import { PromiseErrorOr } from './types/PromiseErrorOr';
 import getAccessTokenFromSessionStorage from './getAccessTokenFromSessionStorage';
 import { HTTPS_DEFAULT_PORT } from './constants/constants';
-import validateServiceFunctionArgumentOrThrow from './validation/validateServiceFunctionArgument';
 
 export type ServiceFunctionType = 'create' | 'update' | 'other';
 
@@ -22,16 +21,6 @@ export default async function callRemoteService(
       {
         message:
           "Access token storage encryption key is not set. Use 'EncryptionKeyManager.setAccessTokenStorageEncryptionKey()' function to set the encryption key for services before using them",
-      },
-    ];
-  }
-  try {
-    await validateServiceFunctionArgumentOrThrow(serviceFunctionArgument, serviceFunctionType);
-  } catch (error: any) {
-    return [
-      null,
-      {
-        message: error.message,
       },
     ];
   }

@@ -1,5 +1,6 @@
 import { validateOrReject, ValidationError } from 'class-validator';
 import { ServiceFunctionType } from '../callRemoteService';
+import { plainToClass } from 'class-transformer';
 
 function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   validationErrors.forEach((validationError) => {
@@ -52,10 +53,13 @@ function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error)
 
 export default async function validateServiceFunctionArgumentOrThrow(
   serviceFunctionArgument: object,
+  ArgumentClass: new () => any,
   serviceFunctionType: ServiceFunctionType
 ) {
   try {
-    await validateOrReject(serviceFunctionArgument, {
+    const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
+
+    await validateOrReject(serviceFunctionArgumentInstance, {
       whitelist: true,
       forbidNonWhitelisted: true,
       groups: [
@@ -74,8 +78,6 @@ export default async function validateServiceFunctionArgumentOrThrow(
       return;
     }
 
-    throw {
-      error: getValidationErrors(validationErrors),
-    };
+    throw new Error(getValidationErrors(validationErrors));
   }
 }

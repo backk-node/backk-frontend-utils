@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 export { default as callRemoteService } from './callRemoteService';
+export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { BackkError, PossibleBackkError } from './types/BackkError';
