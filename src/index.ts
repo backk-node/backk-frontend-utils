@@ -34,6 +34,7 @@ export { default as ShouldBeTrueForObject } from './decorators/typeproperty/Shou
 // Root entity base classes
 export { default as Captcha } from './types/Captcha';
 export { default as Version } from './types/Version';
+export { default as Value } from './types/Value';
 export { default as _Id } from './types/_id/_Id';
 export { default as _IdAndCaptcha } from './types/_id/_IdAndCaptcha';
 export { default as _IdAndCaptchaAndCreatedAtTimestamp } from './types/_id/_IdAndCaptchaAndCreatedAtTimestamp';
