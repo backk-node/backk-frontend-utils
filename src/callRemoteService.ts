@@ -9,7 +9,6 @@ export type ServiceFunctionType = 'create' | 'update' | 'other';
 export default async function callRemoteService(
   microserviceName: string,
   serviceFunctionName: string,
-  serviceFunctionType: ServiceFunctionType,
   serviceFunctionArgument: any,
   microserviceNamespace: string,
   accessTokenStorageEncryptionKey: string | undefined,
