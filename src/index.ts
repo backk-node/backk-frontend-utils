@@ -4,6 +4,7 @@ export { default as callRemoteService } from './callRemoteService';
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
 
 export { Values, Lengths, Durations } from './constants/constants';
+export { MAX_INT_VALUE } from './constants/constants';
 export { BackkError, PossibleBackkError } from './types/BackkError';
 export { PromiseErrorOr } from './types/PromiseErrorOr';
 export { One } from './types/One';
