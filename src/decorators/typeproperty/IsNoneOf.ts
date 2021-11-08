@@ -1,11 +1,12 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
-import Value from '../../types/Value';
-import { PromiseErrorOr } from '../../types/PromiseErrorOr';
-import { Many } from '../../types/Many';
+import callRemoteService from '../../callRemoteService';
 
 export default function IsNoneOf(
-  getPossibleValuesFunc: () => PromiseErrorOr<Many<Value>>,
+  microserviceName: string,
+  microserviceNamespace: string,
   serviceFunctionName: string,
+  microserviceFqdn: string,
+  accessTokenStorageEncryptionKey: string | undefined,
   testValue: string,
   validationOptions?: ValidationOptions
 ) {
@@ -18,7 +19,14 @@ export default function IsNoneOf(
       options: validationOptions,
       validator: {
         async validate(value: any) {
-          const [possibleValues] = await getPossibleValuesFunc();
+          const [possibleValues] = await callRemoteService(
+            microserviceName,
+            serviceFunctionName,
+            undefined,
+            microserviceNamespace,
+            microserviceFqdn,
+            accessTokenStorageEncryptionKey
+          );
           return possibleValues ? !possibleValues.data.some(({ value }: any) => value === value) : false;
         },
         defaultMessage: () =>

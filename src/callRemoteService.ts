@@ -11,6 +11,7 @@ export default async function callRemoteService(
   serviceFunctionName: string,
   serviceFunctionArgument: any,
   microserviceNamespace: string,
+  microserviceFqdn: string,
   accessTokenStorageEncryptionKey: string | undefined,
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
@@ -24,15 +25,16 @@ export default async function callRemoteService(
     ];
   }
 
-  const serverPort = window.location.search
+  const port = window.location.search
     ? window.location.search.split('serverPort=').pop() ?? HTTPS_DEFAULT_PORT
     : HTTPS_DEFAULT_PORT;
-  const scheme = serverPort === HTTPS_DEFAULT_PORT ? 'https' : 'http';
+  const scheme = port === HTTPS_DEFAULT_PORT ? 'https' : 'http';
   const body = serviceFunctionArgument ? JSON.stringify(serviceFunctionArgument) : undefined;
+  const hostname = microserviceFqdn || `${window.location.hostname}`;
 
   try {
     const response = await fetch(
-      `${scheme}://${window.location.hostname}:${serverPort}/${microserviceName}.${microserviceNamespace}/${serviceFunctionName}`,
+      `${scheme}://${hostname}:${port}/${microserviceName}.${microserviceNamespace}/${serviceFunctionName}`,
       {
         body,
         method: options?.httpMethod ?? 'POST',
