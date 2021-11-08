@@ -61,12 +61,16 @@ export default async function validateServiceFunctionArgumentOrThrow(
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
     await validateOrReject(serviceFunctionArgumentInstance, {
-      whitelist: true,
-      forbidNonWhitelisted: true,
       groups: [
         ...(serviceFunctionType === 'create' ? ['__backk_create__'] : []),
         ...(serviceFunctionType === 'update' ? ['__backk_update__'] : []),
       ],
+    });
+
+    await validateOrReject(serviceFunctionArgumentInstance, {
+      whitelist: !propertyName,
+      forbidNonWhitelisted: !propertyName,
+      skipUndefinedProperties: true,
     });
   } catch (validationErrors: any) {
     validationErrors.forEach((validationError: ValidationError) => {

@@ -15,6 +15,9 @@ export default function LengthAndMatches(
       options: validationOptions,
       validator: {
         validate(value: any) {
+          if (value === null || value === undefined) {
+            return false;
+          }
           if (value.length > maxLength || value.length < minLength) {
             return false;
           }
