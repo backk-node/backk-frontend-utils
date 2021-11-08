@@ -1,4 +1,4 @@
-import { validateOrReject, ValidationError } from 'class-validator';
+import { getFromContainer, MetadataStorage, validateOrReject, ValidationError } from 'class-validator';
 import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 
@@ -54,23 +54,20 @@ function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error)
 export default async function validateServiceFunctionArgumentOrThrow(
   serviceFunctionArgument: object,
   ArgumentClass: new () => any,
-  serviceFunctionType: ServiceFunctionType,
-  propertyName?: string
+  serviceFunctionType: ServiceFunctionType
 ) {
   try {
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
+    console.log(getFromContainer(MetadataStorage));
     await validateOrReject(serviceFunctionArgumentInstance, {
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      skipUndefinedProperties: Object.keys(serviceFunctionArgument).length === 1,
       groups: [
         ...(serviceFunctionType === 'create' ? ['__backk_create__'] : []),
         ...(serviceFunctionType === 'update' ? ['__backk_update__'] : []),
       ],
-    });
-
-    await validateOrReject(serviceFunctionArgumentInstance, {
-      whitelist: !propertyName,
-      forbidNonWhitelisted: !propertyName,
-      skipUndefinedProperties: true,
     });
   } catch (validationErrors: any) {
     validationErrors.forEach((validationError: ValidationError) => {
@@ -83,12 +80,6 @@ export default async function validateServiceFunctionArgumentOrThrow(
       return;
     }
 
-    const finalValidationErrors = propertyName
-      ? validationErrors.filter(
-          (validationError: ValidationError) => validationError.property === propertyName
-        )
-      : validationErrors;
-
-    throw new Error(getValidationErrors(finalValidationErrors));
+    throw new Error(getValidationErrors(validationErrors));
   }
 }
