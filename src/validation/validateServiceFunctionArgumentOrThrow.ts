@@ -54,7 +54,8 @@ function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error)
 export default async function validateServiceFunctionArgumentOrThrow(
   serviceFunctionArgument: object,
   ArgumentClass: new () => any,
-  serviceFunctionType: ServiceFunctionType
+  serviceFunctionType: ServiceFunctionType,
+  propertyName?: string
 ) {
   try {
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
@@ -78,6 +79,12 @@ export default async function validateServiceFunctionArgumentOrThrow(
       return;
     }
 
-    throw new Error(getValidationErrors(validationErrors));
+    const finalValidationErrors = propertyName
+      ? validationErrors.filter(
+          (validationError: ValidationError) => validationError.property === propertyName
+        )
+      : validationErrors;
+
+    throw new Error(getValidationErrors(finalValidationErrors));
   }
 }
