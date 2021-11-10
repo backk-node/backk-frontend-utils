@@ -11,6 +11,9 @@ export default function IsDataUri(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         validate(value: any) {
+          if (typeof value !== 'string') {
+            return false;
+          }
           return isDataUri(value);
         },
         defaultMessage: () => propertyName + ' is not a valid data URI',

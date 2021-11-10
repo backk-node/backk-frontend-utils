@@ -73,16 +73,20 @@ export default async function validateServiceFunctionArgument<T extends object>(
 
     return null;
   } catch (validationErrors: any) {
-    validationErrors.forEach((validationError: ValidationError) => {
-      if (validationError.children) {
-        filterOutManyToManyIdErrors(validationError.children);
-      }
-    });
+    if (Array.isArray(validationErrors)) {
+      validationErrors.forEach((validationError: ValidationError) => {
+        if (validationError.children) {
+          filterOutManyToManyIdErrors(validationError.children);
+        }
+      });
 
-    if (getValidationErrorConstraintsCount(validationErrors) === 0) {
-      return null;
+      if (getValidationErrorConstraintsCount(validationErrors) === 0) {
+        return null;
+      }
+
+      return getValidationErrors(validationErrors);
     }
 
-    return getValidationErrors(validationErrors);
+    return validationErrors;
   }
 }

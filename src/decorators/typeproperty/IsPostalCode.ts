@@ -14,7 +14,10 @@ export default function IsPostalCode(
       options: validationOptions,
       validator: {
         validate(value: any, args: ValidationArguments) {
-          return isPostalCode(value, args.constraints[1]);
+          if (typeof value !== 'string') {
+            return false;
+          }
+          return isPostalCode(value, args?.constraints?.[1]);
         },
         defaultMessage: () => propertyName + ' is not a valid postal code for locale: ' + locale,
       },

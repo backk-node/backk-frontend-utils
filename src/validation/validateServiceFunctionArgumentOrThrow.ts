@@ -27,16 +27,20 @@ export default async function validateServiceFunctionArgumentOrThrow<T extends o
       groups: [`__backk_${serviceFunctionType}__`],
     });
   } catch (validationErrors: any) {
-    validationErrors.forEach((validationError: ValidationError) => {
-      if (validationError.children) {
-        filterOutManyToManyIdErrors(validationError.children);
-      }
-    });
+    if (Array.isArray(validationErrors)) {
+      validationErrors.forEach((validationError: ValidationError) => {
+        if (validationError.children) {
+          filterOutManyToManyIdErrors(validationError.children);
+        }
+      });
 
-    if (getValidationErrorConstraintsCount(validationErrors) === 0) {
-      return;
+      if (getValidationErrorConstraintsCount(validationErrors) === 0) {
+        return;
+      }
+
+      throw new Error(getValidationErrors(validationErrors));
     }
 
-    throw new Error(getValidationErrors(validationErrors));
+    throw new Error(validationErrors);
   }
 }
