@@ -2,6 +2,8 @@ import groupBy from 'lodash/groupBy';
 import { getMetadataStorage } from 'class-validator';
 import { ValidationMetadata } from 'class-validator/types/metadata/ValidationMetadata';
 
+export let isValidationMetadataUpdated = false;
+
 export default function updateValidationMetadata() {
   const validationMetadatas: ValidationMetadata[] = (getMetadataStorage() as any).validationMetadatas;
 
@@ -47,4 +49,6 @@ export default function updateValidationMetadata() {
       });
     }
   });
+
+  isValidationMetadataUpdated = true;
 }

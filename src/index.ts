@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import updateValidationMetadata from './validation/updateValidationMetadata';
 
 export { default as callRemoteService } from './callRemoteService';
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
@@ -88,5 +87,3 @@ export { default as Subject } from './types/useraccount/Subject';
 
 export * from 'class-validator';
 export { Type } from 'class-transformer';
-
-updateValidationMetadata();

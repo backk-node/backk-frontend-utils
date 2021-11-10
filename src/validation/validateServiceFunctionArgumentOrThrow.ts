@@ -1,6 +1,7 @@
 import { validateOrReject, ValidationError } from 'class-validator';
 import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
+import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 
 function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   validationErrors.forEach((validationError) => {
@@ -57,6 +58,10 @@ export default async function validateServiceFunctionArgumentOrThrow(
   serviceFunctionType: ServiceFunctionType
 ) {
   try {
+    if (!isValidationMetadataUpdated) {
+      updateValidationMetadata();
+    }
+
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
     await validateOrReject(serviceFunctionArgumentInstance, {
