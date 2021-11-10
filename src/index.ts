@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 export { default as callRemoteService } from './callRemoteService';
 export { default as validateServiceFunctionArgument } from './validation/validateServiceFunctionArgument';
-export { default as useState } from './useState';
+export { default as useBackkState } from './useBackkState';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
