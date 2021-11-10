@@ -52,11 +52,11 @@ function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error)
         .join(', ');
 }
 
-export default async function validateServiceFunctionArgumentOrThrow(
+export default async function validateServiceFunctionArgument(
   serviceFunctionArgument: object,
   ArgumentClass: new () => any,
   serviceFunctionType: ServiceFunctionType
-) {
+): Promise<string | null> {
   try {
     if (!isValidationMetadataUpdated) {
       updateValidationMetadata();
@@ -70,6 +70,8 @@ export default async function validateServiceFunctionArgumentOrThrow(
       skipUndefinedProperties: Object.keys(serviceFunctionArgument).length === 1,
       groups: [`__backk_${serviceFunctionType}__`],
     });
+
+    return null;
   } catch (validationErrors: any) {
     validationErrors.forEach((validationError: ValidationError) => {
       if (validationError.children) {
@@ -78,9 +80,9 @@ export default async function validateServiceFunctionArgumentOrThrow(
     });
 
     if (getValidationErrorConstraintsCount(validationErrors) === 0) {
-      return;
+      return null;
     }
 
-    throw new Error(getValidationErrors(validationErrors));
+    return getValidationErrors(validationErrors);
   }
 }

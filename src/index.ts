@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 export { default as callRemoteService } from './callRemoteService';
-export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
+export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgument';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';

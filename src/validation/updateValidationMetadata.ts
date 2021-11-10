@@ -23,13 +23,13 @@ export default function updateValidationMetadata() {
         undefinedValidation.groups?.[1] === undefined
       ) {
         validationMetadatas.forEach((validationMetadata) => {
-          if (validationMetadata !== undefinedValidation) {
+          if (validationMetadata.groups?.[0] === undefined) {
             validationMetadata.groups = ['__backk_other__', '__backk_update__'];
           }
         });
       } else if (undefinedValidation.groups?.[0] === '__backk_update__') {
         validationMetadatas.forEach((validationMetadata) => {
-          if (validationMetadata !== undefinedValidation) {
+          if (validationMetadata.groups?.[0] === undefined) {
             validationMetadata.groups = ['__backk_other__', '__backk_create__'];
           }
         });
@@ -38,14 +38,16 @@ export default function updateValidationMetadata() {
         undefinedValidation.groups?.[1] === '__backk_update__'
       ) {
         validationMetadatas.forEach((validationMetadata) => {
-          if (validationMetadata !== undefinedValidation) {
+          if (validationMetadata.groups?.[0] === undefined) {
             validationMetadata.groups = ['__backk_other__'];
           }
         });
       }
     } else {
       validationMetadatas.forEach((validationMetadata) => {
-        validationMetadata.groups = ['__backk_other__', '__backk_create__', '__backk_update__'];
+        if (validationMetadata.groups?.[0] === undefined) {
+          validationMetadata.groups = ['__backk_other__', '__backk_create__', '__backk_update__'];
+        }
       });
     }
   });
