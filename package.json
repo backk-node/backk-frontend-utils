@@ -45,10 +45,12 @@
     "crypto-js": "4.1.1",
     "dayjs": "1.10.7",
     "js-base64": "3.7.2",
+    "lodash": "4.17.21",
     "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
     "@types/crypto-js": "4.0.2",
+    "@types/lodash": "4.14.176",
     "@typescript-eslint/eslint-plugin": "5.2.0",
     "@typescript-eslint/parser": "5.2.0",
     "eslint": "8.1.0",

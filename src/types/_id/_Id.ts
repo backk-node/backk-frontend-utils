@@ -4,7 +4,7 @@ import IsStringOrObjectId from '../../decorators/typeproperty/IsStringOrObjectId
 
 export default class _Id {
   @IsUndefined({ groups: ['__backk_create__'] })
-  @IsStringOrObjectId({ groups: ['__backk_update__'] })
-  @MaxLengthAndMatches(24, /^[a-f\d]{1,24}$/, { groups: ['__backk_update__'] })
+  @IsStringOrObjectId()
+  @MaxLengthAndMatches(24, /^[a-f\d]{1,24}$/)
   _id!: string;
 }

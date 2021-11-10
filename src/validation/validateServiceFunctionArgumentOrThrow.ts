@@ -1,4 +1,4 @@
-import { getFromContainer, MetadataStorage, validateOrReject, ValidationError } from 'class-validator';
+import { validateOrReject, ValidationError } from 'class-validator';
 import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 
@@ -59,15 +59,11 @@ export default async function validateServiceFunctionArgumentOrThrow(
   try {
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
-    console.log(getFromContainer(MetadataStorage));
     await validateOrReject(serviceFunctionArgumentInstance, {
       whitelist: true,
       forbidNonWhitelisted: true,
       skipUndefinedProperties: Object.keys(serviceFunctionArgument).length === 1,
-      groups: [
-        ...(serviceFunctionType === 'create' ? ['__backk_create__'] : []),
-        ...(serviceFunctionType === 'update' ? ['__backk_update__'] : []),
-      ],
+      groups: [`__backk_${serviceFunctionType}__`],
     });
   } catch (validationErrors: any) {
     validationErrors.forEach((validationError: ValidationError) => {
