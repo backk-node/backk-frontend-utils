@@ -52,9 +52,9 @@ function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error)
         .join(', ');
 }
 
-export default async function validateServiceFunctionArgument(
-  serviceFunctionArgument: object,
-  ArgumentClass: new () => any,
+export default async function validateServiceFunctionArgument<T extends object>(
+  serviceFunctionArgument: T | Partial<T>,
+  ArgumentClass: new () => T,
   serviceFunctionType: ServiceFunctionType
 ): Promise<string | null> {
   try {
