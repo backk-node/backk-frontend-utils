@@ -3,7 +3,7 @@ import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 
-function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
+export function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   validationErrors.forEach((validationError) => {
     if (validationError.constraints) {
       validationError.constraints = Object.entries(validationError.constraints).reduce(
@@ -23,7 +23,7 @@ function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   });
 }
 
-function getValidationErrorConstraintsCount(validationErrors: ValidationError[]): number {
+export function getValidationErrorConstraintsCount(validationErrors: ValidationError[]): number {
   return validationErrors.reduce((constraintsCount, validationError) => {
     const newConstraintsCount = constraintsCount + Object.keys(validationError.constraints ?? {}).length;
     return validationError.children && validationError.children.length > 0
@@ -32,7 +32,7 @@ function getValidationErrorConstraintsCount(validationErrors: ValidationError[])
   }, 0);
 }
 
-function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error): string {
+export function getValidationErrors(errorOrValidationErrors: ValidationError[] | Error): string {
   return errorOrValidationErrors instanceof Error
     ? errorOrValidationErrors.message
     : errorOrValidationErrors
