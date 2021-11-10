@@ -3,6 +3,8 @@ import 'reflect-metadata';
 export { default as callRemoteService } from './callRemoteService';
 export { default as validateServiceFunctionArgument } from './validation/validateServiceFunctionArgument';
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
+export { default as validateServiceFunctionArgumentProperty } from './validation/validateServiceFunctionArgumentProperty';
+
 export { default as useBackkState } from './useBackkState';
 
 export { Values, Lengths, Durations } from './constants/constants';
