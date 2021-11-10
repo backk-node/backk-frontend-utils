@@ -7,5 +7,5 @@ export default class Captcha {
   @IsString()
   @MaxLength(Lengths._512)
   @IsAscii()
-  captchaToken!: string;
+  captchaToken!: string | undefined;
 }

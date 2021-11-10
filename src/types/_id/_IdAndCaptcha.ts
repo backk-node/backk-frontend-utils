@@ -8,5 +8,5 @@ export default class _IdAndCaptcha extends _Id {
   @IsString()
   @MaxLength(Lengths._512)
   @IsAscii()
-  captchaToken!: string;
+  captchaToken!: string | undefined;
 }

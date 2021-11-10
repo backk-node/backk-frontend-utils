@@ -7,5 +7,5 @@ export default class Subject {
   @IsString()
   @IsSubject()
   @MaxLength(255)
-  subject!: string;
+  subject!: string | undefined;
 }
