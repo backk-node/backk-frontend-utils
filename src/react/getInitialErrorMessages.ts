@@ -1,9 +1,9 @@
-export default function getInitialErrorMessages<T>(initialState: T): { [K in keyof T]: null } {
+export default function getInitialErrorMessages<T>(initialState: T): { [K in keyof T]: undefined } {
   return Object.keys(initialState).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: null,
+      [key]: undefined,
     }),
-    {} as { [K in keyof T]: null }
+    {} as { [K in keyof T]: undefined }
   );
 }
