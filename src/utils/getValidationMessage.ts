@@ -4,5 +4,5 @@ export default function getValidationMessage(possibleErrorMessage: string | null
   } else if (possibleErrorMessage === null) {
     return 'OK';
   }
-  return possibleErrorMessage;
+  return possibleErrorMessage[0].toUpperCase() + possibleErrorMessage.slice(1);
 }
