@@ -3,6 +3,11 @@ import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatch
 import _IdAndVersion from './_IdAndVersion';
 
 export default class _IdAndVersionAndUserAccountId extends _IdAndVersion {
+  constructor() {
+    super();
+    this.userAccountId = '';
+  }
+
   @IsStringOrObjectId()
   @MaxLengthAndMatches(24, /^[a-f\d]{1,24}$/)
   userAccountId!: string;

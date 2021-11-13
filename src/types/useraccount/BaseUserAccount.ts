@@ -4,6 +4,11 @@ import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 import IsSubject from '../../decorators/typeproperty/IsSubject';
 
 export default class BaseUserAccount extends _IdAndCaptcha {
+  constructor() {
+    super();
+    this.subject = '';
+  }
+
   @IsUndefined({ groups: ['__backk_update__'] })
   @IsString()
   @MaxLength(255)

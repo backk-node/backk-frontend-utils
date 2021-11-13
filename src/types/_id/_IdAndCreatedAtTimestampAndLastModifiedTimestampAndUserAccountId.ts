@@ -3,6 +3,11 @@ import IsStringOrObjectId from '../../decorators/typeproperty/IsStringOrObjectId
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';
 
 export default class _IdAndCreatedAtTimestampAndLastModifiedTimestampAndUserAccountId extends _IdAndCreatedAtTimestampAndLastModifiedTimestamp {
+  constructor() {
+    super();
+    this.userAccountId = '';
+  }
+
   @IsStringOrObjectId()
   @MaxLengthAndMatches(24, /^[a-f\d]{1,24}$/)
   userAccountId!: string;
