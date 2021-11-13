@@ -4,11 +4,6 @@ import { Lengths } from '../../constants/constants';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 
 export default class _IdAndCaptcha extends _Id {
-  constructor() {
-    super();
-    this.captchaToken = '';
-  }
-
   @IsUndefined({ groups: ['__backk_update__'] })
   @IsString()
   @MaxLength(Lengths._512)
