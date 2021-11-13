@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'cv-pksilen';
 
 export default function LengthAndMatchesAll(
   minLength: number,

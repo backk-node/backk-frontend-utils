@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 import callRemoteService from '../../callRemoteService';
 
 export default function IsNoneOf(

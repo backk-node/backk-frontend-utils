@@ -1,5 +1,5 @@
 import { PostQueryOperations } from './PostQueryOperations';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsInstance, IsOptional, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsInstance, IsOptional, ValidateNested } from 'cv-pksilen';
 import Pagination from './Pagination';
 import { Values } from '../../constants/constants';
 

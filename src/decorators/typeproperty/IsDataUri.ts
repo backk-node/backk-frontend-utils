@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 import isDataUri from 'validator/lib/isDataURI';
 
 export default function IsDataUri(validationOptions?: ValidationOptions) {

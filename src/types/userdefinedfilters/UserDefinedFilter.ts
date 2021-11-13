@@ -8,7 +8,7 @@ import {
   IsOptional,
   IsString,
   ValidateNested,
-} from 'class-validator';
+} from 'cv-pksilen';
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';
 import OrFilter from './OrFilter';
 import { Lengths } from '../../constants/constants';

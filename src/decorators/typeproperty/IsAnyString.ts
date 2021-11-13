@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
+import { registerDecorator, ValidationOptions, ValidationArguments } from 'cv-pksilen';
 
 export default function IsAnyString(validationOptions?: ValidationOptions) {
   return function (object: Record<string, any>, propertyName: string) {

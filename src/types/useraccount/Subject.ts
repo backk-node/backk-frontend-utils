@@ -1,4 +1,4 @@
-import { IsString, MaxLength } from 'class-validator';
+import { IsString, MaxLength } from 'cv-pksilen';
 import IsSubject from '../../decorators/typeproperty/IsSubject';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 

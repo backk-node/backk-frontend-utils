@@ -1,4 +1,4 @@
-import { IsAscii, IsString, MaxLength } from 'class-validator';
+import { IsAscii, IsString, MaxLength } from 'cv-pksilen';
 import { Lengths } from '../constants/constants';
 import IsUndefined from '../decorators/typeproperty/IsUndefined';
 

@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "class-transformer": "0.4.0",
-    "class-validator": "0.13.1",
     "crypto-js": "4.1.1",
+    "cv-pksilen": "0.13.3",
     "dayjs": "1.10.7",
     "js-base64": "3.7.2",
     "lodash": "4.17.21",

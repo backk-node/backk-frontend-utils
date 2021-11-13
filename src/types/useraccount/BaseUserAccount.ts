@@ -1,5 +1,5 @@
 import _IdAndCaptcha from '../_id/_IdAndCaptcha';
-import { IsString, MaxLength } from 'class-validator';
+import { IsString, MaxLength } from 'cv-pksilen';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 import IsSubject from '../../decorators/typeproperty/IsSubject';
 

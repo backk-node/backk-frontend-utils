@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 
 export default function MaxLengthAndMatchesAll(
   maxLength: number,

@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 
 export default function MinMax(minValue: number, maxValue: number, validationOptions?: ValidationOptions) {
   return function (object: Record<string, any>, propertyName: string) {

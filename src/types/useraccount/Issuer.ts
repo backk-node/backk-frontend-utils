@@ -1,4 +1,4 @@
-import { IsString, IsUrl, MaxLength } from 'class-validator';
+import { IsString, IsUrl, MaxLength } from 'cv-pksilen';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 
 export default class Issuer {

@@ -91,5 +91,5 @@ export { default as Issuer } from './types/useraccount/Issuer';
 export { default as UserAccountId } from './types/useraccount/UserAccountId';
 export { default as Subject } from './types/useraccount/Subject';
 
-export * from 'class-validator';
+export * from 'cv-pksilen';
 export { Type } from 'class-transformer';

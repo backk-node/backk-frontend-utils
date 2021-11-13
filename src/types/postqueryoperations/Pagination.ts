@@ -1,5 +1,5 @@
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';
-import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsInt, IsOptional, IsString, Max, Min } from 'cv-pksilen';
 import { Lengths } from '../../constants/constants';
 
 export default class Pagination {

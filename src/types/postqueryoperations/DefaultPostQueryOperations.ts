@@ -9,7 +9,7 @@ import {
   IsOptional,
   IsString,
   ValidateNested,
-} from 'class-validator';
+} from 'cv-pksilen';
 import Pagination from './Pagination';
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';
 import { Lengths, Values } from '../../constants/constants';

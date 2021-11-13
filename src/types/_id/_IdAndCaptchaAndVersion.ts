@@ -1,5 +1,5 @@
 import _IdAndCaptcha from './_IdAndCaptcha';
-import { Max, Min } from 'class-validator';
+import { Max, Min } from 'cv-pksilen';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 
 export default class _IdAndCaptchaAndVersion extends _IdAndCaptcha {

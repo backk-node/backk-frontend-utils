@@ -1,7 +1,7 @@
 import { ServiceFunctionType } from '../callRemoteService';
 import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 import { plainToClass } from 'class-transformer';
-import { validateOrReject, ValidationError } from 'class-validator';
+import { validateOrReject, ValidationError } from 'cv-pksilen';
 import {
   filterOutManyToManyIdErrors,
   getValidationErrorConstraintsCount,

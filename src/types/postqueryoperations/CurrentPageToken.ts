@@ -1,4 +1,4 @@
-import { IsAlphanumeric, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsAlphanumeric, IsOptional, IsString, MaxLength } from 'cv-pksilen';
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';
 import { Lengths } from '../../constants/constants';
 

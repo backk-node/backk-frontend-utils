@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments } from 'class-validator';
+import { registerDecorator, ValidationArguments } from 'cv-pksilen';
 
 function countDecimalPlaces(value: number) {
   if (Math.floor(value) === value) {

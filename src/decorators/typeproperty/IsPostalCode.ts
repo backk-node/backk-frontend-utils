@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'cv-pksilen';
 import isPostalCode, { PostalCodeLocale } from 'validator/lib/isPostalCode';
 
 export default function IsPostalCode(

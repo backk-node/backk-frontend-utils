@@ -1,6 +1,6 @@
 import { PostQueryOperations } from './PostQueryOperations';
 import SortBy from './SortBy';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsInstance, IsOptional, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsInstance, IsOptional, ValidateNested } from 'cv-pksilen';
 import { Values } from '../../constants/constants';
 
 export default class DefaultSorting implements PostQueryOperations {

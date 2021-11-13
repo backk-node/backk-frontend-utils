@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 import isAscii from 'validator/lib/isAscii';
 import { Lengths } from '../../constants/constants';
 

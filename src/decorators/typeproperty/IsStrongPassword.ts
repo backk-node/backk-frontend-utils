@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'cv-pksilen';
 import hasAtMostRepeatingOrConsecutiveCharacters from '../../validation/hasAtMostRepeatingOrConsecutiveCharacters';
 import { Lengths } from '../../constants/constants';
 

@@ -1,6 +1,6 @@
 import groupBy from 'lodash/groupBy';
-import { getMetadataStorage } from 'class-validator';
-import { ValidationMetadata } from 'class-validator/types/metadata/ValidationMetadata';
+import { getMetadataStorage } from 'cv-pksilen';
+import { ValidationMetadata } from 'cv-pksilen/build/types/metadata/ValidationMetadata';
 
 export let isValidationMetadataUpdated = false;
 

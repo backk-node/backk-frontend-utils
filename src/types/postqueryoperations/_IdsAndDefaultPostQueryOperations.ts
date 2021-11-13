@@ -1,4 +1,4 @@
-import { ArrayMaxSize, ArrayMinSize, IsArray } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray } from 'cv-pksilen';
 import DefaultPostQueryOperations from './DefaultPostQueryOperations';
 import IsStringOrObjectId from '../../decorators/typeproperty/IsStringOrObjectId';
 import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatches';

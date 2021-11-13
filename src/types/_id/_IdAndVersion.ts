@@ -1,5 +1,5 @@
 import _Id from './_Id';
-import { Max, Min } from 'class-validator';
+import { Max, Min } from 'cv-pksilen';
 import IsUndefined from '../../decorators/typeproperty/IsUndefined';
 
 export default class _IdAndVersion extends _Id {

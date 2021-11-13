@@ -1,4 +1,4 @@
-import { validateOrReject, ValidationError } from 'class-validator';
+import { validateOrReject, ValidationError } from 'cv-pksilen';
 import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
