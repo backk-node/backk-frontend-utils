@@ -8,6 +8,7 @@ export { default as createServiceFunctionArgumentPropertyUpdater } from './react
 export { default as getInitialErrorMessages } from './utils/getInitialErrorMessages';
 export { default as getValidationMessage } from './utils/getValidationMessage';
 export { default as getValidationMessageClassNames } from './utils/getValidationMessageClassNames';
+export { default as getInputProps } from './utils/getInputProps';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
