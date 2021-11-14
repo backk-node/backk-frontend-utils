@@ -1,6 +1,6 @@
 import { getMetadataStorage } from 'cv-pksilen';
 
-function findValidationMetadata(validationMetadatas: any[], validationName: string) {
+export function findValidationMetadata(validationMetadatas: any[], validationName: string) {
   return validationMetadatas.find(
     (validationMetadata) => validationMetadata.name.toLowerCase() === validationName.toLowerCase()
   );

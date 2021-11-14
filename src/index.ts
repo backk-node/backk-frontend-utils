@@ -5,10 +5,10 @@ export { default as validateServiceFunctionArgument } from './validation/validat
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
 export { default as validateServiceFunctionArgumentProperty } from './validation/validateServiceFunctionArgumentProperty';
 export { default as createServiceFunctionArgumentPropertyUpdater } from './react/createServiceFunctionArgumentPropertyUpdater';
-export { default as getInitialErrorMessages } from './utils/getInitialErrorMessages';
 export { default as getValidationMessage } from './utils/getValidationMessage';
 export { default as getValidationMessageClassNames } from './utils/getValidationMessageClassNames';
 export { default as getInputProps } from './utils/getInputProps';
+export { default as isServiceFunctionArgumentPropertyDefined } from './utils/isServiceFunctionArgumentPropertyDefined';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
