@@ -7,12 +7,10 @@ export default function isServiceFunctionArgumentPropertyDefined<T extends { [ke
   propertyName: keyof T,
   serviceFunctionType: ServiceFunctionType
 ) {
-  const validationMetadatas = getMetadataStorage().getTargetValidationMetadatas(
-    ArgumentClass,
-    '',
-    false,
-    false
-  );
+  const validationMetadatas = getMetadataStorage()
+    .getTargetValidationMetadatas(ArgumentClass, '', false, false)
+    .filter((validationMetadata) => validationMetadata.propertyName === propertyName);
+
   const undefinedValidation = findValidationMetadata(validationMetadatas, 'isUndefined');
   return !undefinedValidation?.groups.includes(`__backk_${serviceFunctionType}__`);
 }

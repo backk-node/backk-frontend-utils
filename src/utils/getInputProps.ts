@@ -24,12 +24,9 @@ export default function getInputProps<T extends { [key: string]: any }>(
   propertyName: keyof T
 ) {
   const inputProps: any = {};
-  const validationMetadatas = getMetadataStorage().getTargetValidationMetadatas(
-    ArgumentClass,
-    '',
-    false,
-    false
-  );
+  const validationMetadatas = getMetadataStorage()
+    .getTargetValidationMetadatas(ArgumentClass, '', false, false)
+    .filter((validationMetadata) => validationMetadata.propertyName === propertyName);
 
   if (hasValidationMetadata(validationMetadatas, 'isString')) {
     inputProps.type = 'text';
