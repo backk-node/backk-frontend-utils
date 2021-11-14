@@ -5,7 +5,7 @@ export default function createServiceFunctionArgumentPropertyUpdater<T extends o
   ArgumentClass: new () => T,
   serviceFunctionType: ServiceFunctionType,
   setArgumentState: React.Dispatch<any>,
-  setErrorMessages: React.Dispatch<any>
+  setErrorMessage: React.Dispatch<any>
 ) {
   return async function <K extends keyof T, V extends T[K]>(propertyName: K, propertyValue: V) {
     const errorMessage = await validateServiceFunctionArgumentProperty(
@@ -15,10 +15,7 @@ export default function createServiceFunctionArgumentPropertyUpdater<T extends o
       serviceFunctionType
     );
 
-    setErrorMessages((prevErrorMessages: any) => ({
-      ...prevErrorMessages,
-      [propertyName]: errorMessage,
-    }));
+    setErrorMessage(errorMessage);
 
     if (!errorMessage) {
       setArgumentState((prevArgumentState: any) => ({
