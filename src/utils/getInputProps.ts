@@ -145,4 +145,6 @@ export default function getInputProps<T>(ArgumentClass: new () => T, propertyNam
       inputProps.isMultiple = true;
     }
   }
+
+  return inputProps;
 }
