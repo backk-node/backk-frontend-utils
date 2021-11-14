@@ -2,13 +2,13 @@ import { getMetadataStorage } from 'cv-pksilen';
 
 export function findValidationMetadata(validationMetadatas: any[], validationName: string) {
   return validationMetadatas.find(
-    (validationMetadata) => validationMetadata.name.toLowerCase() === validationName.toLowerCase()
+    (validationMetadata) => validationMetadata.name?.toLowerCase() === validationName.toLowerCase()
   );
 }
 
 function hasValidationMetadata(validationMetadatas: any[], validationName: string) {
   return !!validationMetadatas.find(
-    (validationMetadata) => validationMetadata.name.toLowerCase() === validationName.toLowerCase()
+    (validationMetadata) => validationMetadata.name?.toLowerCase() === validationName.toLowerCase()
   );
 }
 
