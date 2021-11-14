@@ -19,7 +19,10 @@ function getValidationMetadataConstraints(validationMetadata: any) {
   return validationMetadata.constraints;
 }
 
-export default function getInputProps<T>(ArgumentClass: new () => T, propertyName: string) {
+export default function getInputProps<T extends { [key: string]: any }>(
+  ArgumentClass: new () => T,
+  propertyName: keyof T
+) {
   const inputProps: any = {};
   const validationMetadatas = getMetadataStorage().getTargetValidationMetadatas(
     ArgumentClass,

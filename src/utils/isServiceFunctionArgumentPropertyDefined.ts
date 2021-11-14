@@ -2,9 +2,9 @@ import { ServiceFunctionType } from '../callRemoteService';
 import { findValidationMetadata } from './getInputProps';
 import { getMetadataStorage } from 'cv-pksilen';
 
-export default function isServiceFunctionArgumentPropertyDefined<T>(
+export default function isServiceFunctionArgumentPropertyDefined<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
-  propertyName: string,
+  propertyName: keyof T,
   serviceFunctionType: ServiceFunctionType
 ) {
   const validationMetadatas = getMetadataStorage().getTargetValidationMetadatas(

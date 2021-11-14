@@ -1,7 +1,7 @@
 import { ServiceFunctionType } from '../callRemoteService';
 import validateServiceFunctionArgumentProperty from '../validation/validateServiceFunctionArgumentProperty';
 
-export default function createServiceFunctionArgumentPropertyUpdater<T extends object>(
+export default function createServiceFunctionArgumentPropertyUpdater<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
   serviceFunctionType: ServiceFunctionType,
   setArgumentState: React.Dispatch<any>,
