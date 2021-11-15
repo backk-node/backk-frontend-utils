@@ -144,6 +144,8 @@ export default function getInputProps<T extends { [key: string]: any }>(
     if (isInValidation.each) {
       inputProps.isMultiple = true;
     }
+  } else if (hasValidationMetadata(validationMetadatas, 'isDataUri')) {
+    inputProps.type = 'file';
   }
 
   return inputProps;
