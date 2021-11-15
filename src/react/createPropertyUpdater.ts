@@ -42,7 +42,17 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
             [propertyName]: isArray ? [propertyValue] : propertyValue,
           }));
         };
-        fileReader.readAsDataURL(propertyValue);
+        try {
+          fileReader.readAsDataURL(propertyValue);
+        } catch {
+          errorMessage = await validateServiceFunctionArgumentProperty(
+            Class,
+            propertyName,
+            '' as any,
+            serviceFunctionType
+          );
+          setErrorMessage(errorMessage);
+        }
       } else {
         setArgumentState((prevArgumentState: any) => ({
           ...prevArgumentState,
