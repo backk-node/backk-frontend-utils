@@ -1,7 +1,7 @@
 import { PossibleString } from '../types/PossibleString';
 
 export default function getValidationMessage(possibleErrorMessage: PossibleString): string {
-  if (possibleErrorMessage === undefined || possibleErrorMessage === '') {
+  if (possibleErrorMessage === undefined) {
     return '';
   } else if (possibleErrorMessage === null) {
     return 'OK';

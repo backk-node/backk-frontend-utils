@@ -1,7 +1,7 @@
 import { registerDecorator, ValidationArguments } from 'cv-pksilen';
 
 function countDecimalPlaces(value: number) {
-  if (Math.floor(value) === value) {
+  if (isNaN(value) || Math.floor(value) === value) {
     return 0;
   }
 
