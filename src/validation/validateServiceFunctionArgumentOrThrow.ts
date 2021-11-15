@@ -7,6 +7,7 @@ import {
   getValidationErrorConstraintsCount,
   getValidationErrors,
 } from './validateServiceFunctionArgument';
+import shouldPropertyBePresent from '../utils/shouldPropertyBePresent';
 
 export default async function validateServiceFunctionArgumentOrThrow<T extends object>(
   serviceFunctionArgument: T | Partial<T>,
@@ -17,6 +18,12 @@ export default async function validateServiceFunctionArgumentOrThrow<T extends o
     if (!isValidationMetadataUpdated) {
       updateValidationMetadata();
     }
+
+    Object.keys(serviceFunctionArgument).forEach((propertyName) => {
+      if (!shouldPropertyBePresent(ArgumentClass, propertyName as any, serviceFunctionType)) {
+        delete (serviceFunctionArgument as any)[propertyName];
+      }
+    });
 
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 

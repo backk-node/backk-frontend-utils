@@ -2,6 +2,7 @@ import { validateOrReject, ValidationError } from 'cv-pksilen';
 import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
+import shouldPropertyBePresent from '../utils/shouldPropertyBePresent';
 
 export function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   validationErrors.forEach((validationError) => {
@@ -61,6 +62,12 @@ export default async function validateServiceFunctionArgument<T extends object>(
     if (!isValidationMetadataUpdated) {
       updateValidationMetadata();
     }
+
+    Object.keys(serviceFunctionArgument).forEach((propertyName) => {
+      if (!shouldPropertyBePresent(ArgumentClass, propertyName as any, serviceFunctionType)) {
+        delete (serviceFunctionArgument as any)[propertyName];
+      }
+    });
 
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
