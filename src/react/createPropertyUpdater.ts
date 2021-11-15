@@ -9,9 +9,13 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
   setArgumentState: React.Dispatch<any>,
   setErrorMessage: React.Dispatch<any>
 ) {
-  return async function <K extends keyof T>(propertyName: K, propertyValue: any) {
+  return async function <K extends keyof T>(
+    propertyName: K,
+    propertyValue: any,
+    forceImmediateValidation: boolean
+  ) {
     let errorMessage = null;
-    if (propertyValue !== '') {
+    if (propertyValue !== '' || forceImmediateValidation) {
       errorMessage = await validateServiceFunctionArgumentProperty(
         Class,
         propertyName,
