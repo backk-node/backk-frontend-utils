@@ -10,12 +10,15 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
   setErrorMessage: React.Dispatch<any>
 ) {
   return async function <K extends keyof T>(propertyName: K, propertyValue: any) {
-    const errorMessage = await validateServiceFunctionArgumentProperty(
-      Class,
-      propertyName,
-      propertyValue,
-      serviceFunctionType
-    );
+    let errorMessage = null;
+    if (propertyValue !== '') {
+      errorMessage = await validateServiceFunctionArgumentProperty(
+        Class,
+        propertyName,
+        propertyValue,
+        serviceFunctionType
+      );
+    }
 
     setErrorMessage(errorMessage);
     const isArray = isBuiltInTypeArrayProperty(Class, propertyName);
