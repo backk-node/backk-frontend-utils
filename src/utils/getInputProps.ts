@@ -52,6 +52,8 @@ export default function getInputProps<T extends { [key: string]: any }>(
       inputProps.type = 'url';
     } else if (hasValidationMetadata(validationMetadatas, 'isHexColor')) {
       inputProps.type = 'color';
+    } else if (hasValidationMetadata(validationMetadatas, 'isDataUri')) {
+      inputProps.type = 'file';
     }
 
     if (hasValidationMetadata(validationMetadatas, 'minLength')) {
@@ -144,8 +146,6 @@ export default function getInputProps<T extends { [key: string]: any }>(
     if (isInValidation.each) {
       inputProps.isMultiple = true;
     }
-  } else if (hasValidationMetadata(validationMetadatas, 'isDataUri')) {
-    inputProps.type = 'file';
   }
 
   return inputProps;
