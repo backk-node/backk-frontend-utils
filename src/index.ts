@@ -96,4 +96,4 @@ export { default as UserAccountId } from './types/useraccount/UserAccountId';
 export { default as Subject } from './types/useraccount/Subject';
 
 export * from 'cv-pksilen';
-export { Type } from 'class-transformer';
+export { Type, plainToClass } from 'class-transformer';
