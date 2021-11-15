@@ -94,6 +94,7 @@ export { default as BaseUserAccount } from './types/useraccount/BaseUserAccount'
 export { default as Issuer } from './types/useraccount/Issuer';
 export { default as UserAccountId } from './types/useraccount/UserAccountId';
 export { default as Subject } from './types/useraccount/Subject';
+export { PossibleString } from './types/PossibleString';
 
 export * from 'cv-pksilen';
 export { Type } from 'class-transformer';

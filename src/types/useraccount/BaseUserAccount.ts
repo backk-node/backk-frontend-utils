@@ -8,5 +8,5 @@ export default class BaseUserAccount extends _IdAndCaptcha {
   @IsString()
   @MaxLength(255)
   @IsSubject()
-  subject!: string | undefined;
+  subject: string | undefined = undefined;
 }

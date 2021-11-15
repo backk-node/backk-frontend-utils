@@ -6,5 +6,5 @@ export default class Issuer {
   @IsString()
   @IsUrl()
   @MaxLength(255)
-  issuer!: string | undefined;
+  issuer: string | undefined = undefined;
 }
