@@ -27,7 +27,7 @@ export default async function validateServiceFunctionArgumentProperty<
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
     Object.keys(serviceFunctionArgumentInstance).forEach((propName) => {
       if (propName !== propertyName) {
-        delete (serviceFunctionArgument as any)[propName];
+        delete (serviceFunctionArgumentInstance as any)[propName];
       }
     });
 
