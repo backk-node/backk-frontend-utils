@@ -5,5 +5,5 @@ import MaxLengthAndMatches from '../../decorators/typeproperty/MaxLengthAndMatch
 export default class _IdAndVersionAndCreatedAtTimestampAndUserAccountId extends _IdAndVersionAndCreatedAtTimestamp {
   @IsStringOrObjectId()
   @MaxLengthAndMatches(24, /^[a-f\d]{1,24}$/)
-  userAccountId!: string;
+  userAccountId: string = '';
 }
