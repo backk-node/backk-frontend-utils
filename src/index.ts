@@ -4,7 +4,6 @@ export { default as callRemoteService } from './callRemoteService';
 export { default as validateServiceFunctionArgument } from './validation/validateServiceFunctionArgument';
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
 export { default as validateServiceFunctionArgumentProperty } from './validation/validateServiceFunctionArgumentProperty';
-export { default as createPropertyUpdater } from './react/createPropertyUpdater';
 export { default as getValidationMessage } from './utils/getValidationMessage';
 export { default as getValidationMessageClassNames } from './utils/getValidationMessageClassNames';
 export { default as getInputProps } from './utils/getInputProps';

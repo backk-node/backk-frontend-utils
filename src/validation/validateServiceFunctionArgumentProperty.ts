@@ -9,7 +9,7 @@ import {
 } from './validateServiceFunctionArgument';
 
 export default async function validateServiceFunctionArgumentProperty<
-  T extends object,
+  T extends { [key: string]: any },
   K extends keyof T,
   V extends T[K]
 >(
