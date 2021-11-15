@@ -11,7 +11,9 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
 ) {
   return async function <K extends keyof T>(propertyName: K, propertyValue: any, forceValidation: boolean) {
     let errorMessage = undefined;
-    if (propertyValue !== '' || forceValidation) {
+    const isDataUri = isDataUriProperty(Class, propertyName);
+
+    if ((propertyValue !== '' || forceValidation) && !isDataUri) {
       errorMessage = await validateServiceFunctionArgumentProperty(
         Class,
         propertyName,
@@ -24,10 +26,17 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
     const isArray = isBuiltInTypeArrayProperty(Class, propertyName);
 
     if (!errorMessage && propertyValue !== undefined) {
-      if (isDataUriProperty(Class, propertyName)) {
+      if (isDataUri) {
         const fileReader = new FileReader();
-        fileReader.onload = function () {
+        fileReader.onload = async function () {
           const propertyValue = fileReader.result;
+          errorMessage = await validateServiceFunctionArgumentProperty(
+            Class,
+            propertyName,
+            propertyValue as any,
+            serviceFunctionType
+          );
+          setErrorMessage(errorMessage);
           setArgumentState((prevArgumentState: any) => ({
             ...prevArgumentState,
             [propertyName]: isArray ? [propertyValue] : propertyValue,
