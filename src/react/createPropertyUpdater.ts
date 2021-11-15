@@ -23,7 +23,7 @@ export default function createPropertyUpdater<T extends { [key: string]: any }>(
     setErrorMessage(errorMessage);
     const isArray = isBuiltInTypeArrayProperty(Class, propertyName);
 
-    if (!errorMessage) {
+    if (!errorMessage && propertyValue !== undefined) {
       if (isDataUriProperty(Class, propertyName)) {
         const fileReader = new FileReader();
         fileReader.onload = function () {
