@@ -1,5 +1,7 @@
-export default function getValidationMessage(possibleErrorMessage: string | null | undefined): string {
-  if (possibleErrorMessage === undefined) {
+import { PossibleString } from '../types/PossibleString';
+
+export default function getValidationMessage(possibleErrorMessage: PossibleString): string {
+  if (possibleErrorMessage === undefined || possibleErrorMessage === '') {
     return '';
   } else if (possibleErrorMessage === null) {
     return 'OK';
