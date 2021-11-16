@@ -21,6 +21,7 @@ export { BackkError, PossibleBackkError } from './types/BackkError';
 export { PromiseErrorOr } from './types/PromiseErrorOr';
 export { One } from './types/One';
 export { Many } from './types/Many';
+export { ServiceFunctionType } from './callRemoteService';
 
 export { default as ArrayNotUnique } from './decorators/typeproperty/ArrayNotUnique';
 export { default as BooleanOrTinyInt } from './decorators/typeproperty/BooleanOrTinyInt';
