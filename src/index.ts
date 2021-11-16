@@ -8,7 +8,7 @@ export { default as getValidationMessage } from './utils/getValidationMessage';
 export { default as getValidationMessageClassNames } from './utils/getValidationMessageClassNames';
 export { default as getInputType } from './utils/getInputType';
 export { default as getInputValidationProps } from './utils/getInputValidationProps';
-export { default as getSelectInputOptions } from './utils/getSelectInputOptions';
+export { default as getSelectInputPossibleValues } from './utils/getSelectInputPossibleValues';
 export { default as isMultipleSelectInput } from './utils/isMultipleSelectInput';
 export { default as shouldPropertyBePresent } from './utils/shouldPropertyBePresent';
 export { default as isBuiltIntTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';

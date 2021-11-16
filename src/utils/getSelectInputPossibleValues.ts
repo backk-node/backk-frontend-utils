@@ -5,7 +5,7 @@ import {
 } from './getInputType';
 import { getMetadataStorage } from 'cv-pksilen';
 
-export default function getSelectInputOptions<T extends { [key: string]: any }>(
+export default function getSelectInputPossibleValues<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
   propertyName: keyof T
 ) {
