@@ -1,5 +1,5 @@
 import { ServiceFunctionType } from '../callRemoteService';
-import { findValidationMetadata } from './getInputProps';
+import { findValidationMetadata } from './getInputType';
 import { getMetadataStorage } from 'cv-pksilen';
 
 export default function shouldPropertyBePresent<T extends { [key: string]: any }>(

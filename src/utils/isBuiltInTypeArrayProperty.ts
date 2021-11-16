@@ -1,4 +1,4 @@
-import { findValidationMetadata } from './getInputProps';
+import { findValidationMetadata } from './getInputType';
 import { getMetadataStorage } from 'cv-pksilen';
 
 export default function isBuiltInTypeArrayProperty<T extends { [key: string]: any }>(

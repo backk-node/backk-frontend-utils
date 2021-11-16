@@ -6,7 +6,10 @@ export { default as validateServiceFunctionArgumentOrThrow } from './validation/
 export { default as validateServiceFunctionArgumentProperty } from './validation/validateServiceFunctionArgumentProperty';
 export { default as getValidationMessage } from './utils/getValidationMessage';
 export { default as getValidationMessageClassNames } from './utils/getValidationMessageClassNames';
-export { default as getInputProps } from './utils/getInputProps';
+export { default as getInputType } from './utils/getInputType';
+export { default as getInputValidationProps } from './utils/getInputValidationProps';
+export { default as getSelectInputOptions } from './utils/getSelectInputOptions';
+export { default as isMultipleSelectInput } from './utils/isMultipleSelectInput';
 export { default as shouldPropertyBePresent } from './utils/shouldPropertyBePresent';
 export { default as isBuiltIntTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';
 export { default as isObjectProperty } from './utils/isObjectProperty';
@@ -40,6 +43,10 @@ export { default as MaxLengthAndMatchesAll } from './decorators/typeproperty/Max
 export { default as MinMax } from './decorators/typeproperty/MinMax';
 export { default as ShouldBeTrue } from './decorators/typeproperty/ShouldBeTrue';
 export { default as ShouldBeTrueForObject } from './decorators/typeproperty/ShouldBeTrueForObject';
+export { default as AcceptFileTypes } from './decorators/typeproperty/AcceptFileTypes';
+export { default as IsInPast } from './decorators/typeproperty/IsInPast';
+export { default as IsInFuture } from './decorators/typeproperty/IsInFuture';
+export { default as IsTimestampBetween } from './decorators/typeproperty/IsTimestampBetween';
 
 // Root entity base classes
 export { default as Captcha } from './types/Captcha';
