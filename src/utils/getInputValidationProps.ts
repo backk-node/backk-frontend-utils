@@ -4,6 +4,7 @@ import {
   getValidationMetadataConstraints,
   hasValidationMetadata,
 } from './getInputType';
+import dayjs from 'dayjs';
 
 export default function getInputValidationProps<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
@@ -79,6 +80,34 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       const minMaxValidation = findValidationMetadata(validationMetadatas, 'minMax');
       inputValidationProps.min = getValidationMetadataConstraints(minMaxValidation)[0];
       inputValidationProps.max = getValidationMetadataConstraints(minMaxValidation)[1];
+    }
+  } else if (hasValidationMetadata(validationMetadatas, 'isDate')) {
+    if (
+      hasValidationMetadata(validationMetadatas, 'uiProperties') &&
+      hasValidationMetadata(validationMetadatas, 'isTimestampBetween')
+    ) {
+      const uiPropertiesMetadata = findValidationMetadata(validationMetadatas, 'uiProperties');
+      const uiConstraints = getValidationMetadataConstraints(uiPropertiesMetadata);
+      const isTimestampBetweenMetadata = findValidationMetadata(validationMetadatas, 'isTimestampBetween');
+      const [, startValue, endValue] = getValidationMetadataConstraints(isTimestampBetweenMetadata);
+      const startTimestamp = dayjs(startValue);
+      const endTimestamp = dayjs(endValue);
+
+      if (uiConstraints[0].isMonthAndYearOnly) {
+        inputValidationProps.min = startTimestamp.format('YYYY-MM');
+        inputValidationProps.max = endTimestamp.format('YYYY-MM');
+      } else if (uiConstraints[0].isDateOnly) {
+        inputValidationProps.min = startTimestamp.format('YYYY-MM-DD');
+        inputValidationProps.max = endTimestamp.format('YYYY-MM-DD');
+      } else if (uiConstraints[0].isTimeOnly) {
+        inputValidationProps.min = startTimestamp.format('HH:mm');
+        inputValidationProps.max = endTimestamp.format('HH:mm');
+      } else {
+        inputValidationProps.min = startValue;
+        inputValidationProps.max = endValue;
+      }
+    } else {
+      return 'datetime-local';
     }
   }
 
