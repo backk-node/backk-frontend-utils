@@ -27,7 +27,9 @@ export default function getInputType<T extends { [key: string]: any }>(
     .getTargetValidationMetadatas(ArgumentClass, '', false, false)
     .filter((validationMetadata) => validationMetadata.propertyName === propertyName);
 
-  if (hasValidationMetadata(validationMetadatas, 'isString')) {
+  if (hasValidationMetadata(validationMetadatas, 'isStringOrObjectId')) {
+    return 'text';
+  } else if (hasValidationMetadata(validationMetadatas, 'isString')) {
     if (hasValidationMetadata(validationMetadatas, 'isEmail')) {
       return 'email';
     } else if (
@@ -84,6 +86,6 @@ export default function getInputType<T extends { [key: string]: any }>(
   }
 
   throw new Error(
-    ArgumentClass + '.' + propertyName + ': There is not any input type for this property type.'
+    ArgumentClass.name + '.' + propertyName + ': There is not any input type for this property type.'
   );
 }
