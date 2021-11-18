@@ -19,18 +19,20 @@ export default async function validateServiceFunctionArgumentOrThrow<T extends o
       updateValidationMetadata();
     }
 
-    Object.keys(serviceFunctionArgument).forEach((propertyName) => {
+    let serviceFunctionArgumentInstance = serviceFunctionArgument;
+    if (!serviceFunctionArgument.constructor) {
+      serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
+    }
+
+    Object.keys(serviceFunctionArgumentInstance).forEach((propertyName) => {
       if (!shouldPropertyBePresent(ArgumentClass, propertyName as any, serviceFunctionType)) {
-        delete (serviceFunctionArgument as any)[propertyName];
+        delete (serviceFunctionArgumentInstance as any)[propertyName];
       }
     });
-
-    const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
 
     await validateOrReject(serviceFunctionArgumentInstance, {
       whitelist: true,
       forbidNonWhitelisted: true,
-      skipUndefinedProperties: Object.keys(serviceFunctionArgument).length === 1,
       groups: [`__backk_${serviceFunctionType}__`],
     });
   } catch (validationErrors: any) {
