@@ -15,8 +15,9 @@ export default function updateValidationMetadata() {
 
   Object.entries(groupedValidationMetadatas).forEach(([, validationMetadatas]) => {
     const undefinedValidation = validationMetadatas.find(
-      (validationMetadata) => validationMetadata.constraints?.[0] === 'IsUndefined'
+      (validationMetadata) => validationMetadata.constraints?.[0] === 'isUndefined'
     );
+
     if (undefinedValidation) {
       if (
         undefinedValidation.groups?.[0] === '__backk_create__' &&
