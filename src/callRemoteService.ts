@@ -3,6 +3,7 @@ import { HttpRequestOptions } from './types/HttpRequestOptions';
 import { PromiseErrorOr } from './types/PromiseErrorOr';
 import getAccessTokenFromSessionStorage from './getAccessTokenFromSessionStorage';
 import { HTTPS_DEFAULT_PORT } from './constants/constants';
+import { localErrors } from './errors/localErrors';
 
 export type ServiceFunctionType = 'create' | 'update' | 'other';
 
@@ -16,13 +17,7 @@ export default async function callRemoteService(
   options?: HttpRequestOptions
 ): PromiseErrorOr<any> {
   if (!accessTokenStorageEncryptionKey) {
-    return [
-      null,
-      {
-        message:
-          "Access token storage encryption key is not set. Use 'EncryptionKeyManager.setAccessTokenStorageEncryptionKey()' function to set the encryption key for services before using them",
-      },
-    ];
+    return [null, localErrors.ACCESS_TOKEN_ENCRYPTION_KEY_NOT_SET];
   }
 
   const port = window.location.search
@@ -56,11 +51,6 @@ export default async function callRemoteService(
       return [null, responseBodyObject];
     }
   } catch (error: any) {
-    return [
-      null,
-      {
-        message: error.message,
-      },
-    ];
+    return [null, localErrors.NETWORK_ERROR];
   }
 }
