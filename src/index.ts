@@ -14,6 +14,7 @@ export { default as shouldPropertyBePresent } from './utils/shouldPropertyBePres
 export { default as isBuiltIntTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';
 export { default as isObjectProperty } from './utils/isObjectProperty';
 export { default as IsOptionalProperty } from './utils/isOptionalProperty';
+export { default as removeUnchangedProperties } from './utils/removeUnchangedProperties';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
