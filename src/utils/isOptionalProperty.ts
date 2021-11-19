@@ -1,7 +1,7 @@
 import { hasValidationMetadata } from './getInputType';
 import { getMetadataStorage } from 'cv-pksilen';
 
-export default function isObjectProperty<T extends { [key: string]: any }>(
+export default function isOptionalProperty<T extends { [key: string]: any }>(
   Class: new () => T,
   propertyName: keyof T
 ) {
