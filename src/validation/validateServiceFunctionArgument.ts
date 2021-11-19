@@ -64,7 +64,7 @@ export default async function validateServiceFunctionArgument<T extends object>(
     }
 
     let serviceFunctionArgumentInstance = serviceFunctionArgument;
-    if (!serviceFunctionArgument.constructor) {
+    if (serviceFunctionArgument.constructor === Object) {
       serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
     }
 
