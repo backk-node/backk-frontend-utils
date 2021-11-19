@@ -13,7 +13,7 @@ export { default as isMultipleSelectInput } from './utils/isMultipleSelectInput'
 export { default as shouldPropertyBePresent } from './utils/shouldPropertyBePresent';
 export { default as isBuiltIntTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';
 export { default as isObjectProperty } from './utils/isObjectProperty';
-export { default as isDataUriProperty } from './utils/isDataUriProperty';
+export { default as IsOptionalProperty } from './utils/isOptionalProperty';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
