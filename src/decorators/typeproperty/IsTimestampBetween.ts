@@ -6,7 +6,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 dayjs.extend(isBetween);
 dayjs.extend(isoWeek);
 
-export type Unit = 'year' | 'month' | 'day' | 'hour' | 'minute' | 'isoDayOfWeek';
+export type Unit = 'year' | 'month' | 'date' | 'hour' | 'minute' | 'isoDayOfWeek';
 
 export default function IsTimestampBetween(
   unit: Unit,

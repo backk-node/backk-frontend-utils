@@ -7,6 +7,22 @@ import {
 import dayjs from 'dayjs';
 import { Unit } from '../decorators/typeproperty/IsTimestampBetween';
 
+const minValues = {
+  year: 1970,
+  month: 0,
+  date: 1,
+  hour: 0,
+  minute: 0,
+};
+
+const maxValues = {
+  year: 9999,
+  month: 11,
+  date: 31,
+  hour: 23,
+  minute: 59,
+};
+
 export default function getInputValidationProps<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
   propertyName: keyof T
@@ -92,14 +108,8 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       }
 
       const startTimestamp = dayjs();
-      startTimestamp.set('hour', 0);
-      startTimestamp.set('minute', 0);
-      startTimestamp.set('second', 0);
       const endTimestamp = dayjs();
-      endTimestamp.set('hour', 0);
-      endTimestamp.set('minute', 0);
-      endTimestamp.set('second', 0);
-      let isModified = false;
+      const modifiedUnits: Unit[] = [];
 
       validationMetadatas
         .filter((validationMetadata) => validationMetadata.name === 'isTimestampBetween')
@@ -113,10 +123,17 @@ export default function getInputValidationProps<T extends { [key: string]: any }
           startTimestamp.set(unit, startValue);
           endTimestamp.set(unit, endValue);
           // noinspection ReuseOfLocalVariableJS
-          isModified = true;
+          modifiedUnits.push(unit);
         });
 
-      if (isModified) {
+      (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((unit) => {
+        if (!modifiedUnits.includes(unit)) {
+          startTimestamp.set(unit as any, (minValues as any)[unit]);
+          endTimestamp.set(unit as any, (maxValues as any)[unit]);
+        }
+      });
+
+      if (modifiedUnits.length > 0) {
         if (uiConstraints?.[0].isMonthAndYearOnly) {
           inputValidationProps.min = startTimestamp.format('YYYY-MM');
           inputValidationProps.max = endTimestamp.format('YYYY-MM');
@@ -127,8 +144,9 @@ export default function getInputValidationProps<T extends { [key: string]: any }
           inputValidationProps.min = startTimestamp.format('HH:mm');
           inputValidationProps.max = endTimestamp.format('HH:mm');
         } else {
-          inputValidationProps.min = startTimestamp.format();
-          inputValidationProps.max = endTimestamp.format();
+          inputValidationProps.min =
+            startTimestamp.format('YYYY-MM-DD') + 'T' + startTimestamp.format('HH:mm');
+          inputValidationProps.max = endTimestamp.format('YYYY-MM-DD') + 'T' + endTimestamp.format('HH:mm');
         }
       }
     }
