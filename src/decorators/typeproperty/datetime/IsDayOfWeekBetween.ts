@@ -1,7 +1,7 @@
 import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 import dayjs from 'dayjs';
 
-enum DayOfWeek {
+export enum DayOfWeek {
   Sunday = 0,
   Monday,
   Tuesday,
