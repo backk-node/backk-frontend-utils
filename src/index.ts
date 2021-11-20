@@ -46,9 +46,15 @@ export { default as MinMax } from './decorators/typeproperty/MinMax';
 export { default as ShouldBeTrue } from './decorators/typeproperty/ShouldBeTrue';
 export { default as ShouldBeTrueForObject } from './decorators/typeproperty/ShouldBeTrueForObject';
 export { default as AcceptFileTypes } from './decorators/typeproperty/AcceptFileTypes';
-export { default as IsInPast } from './decorators/typeproperty/IsInPast';
-export { default as IsInFuture } from './decorators/typeproperty/IsInFuture';
-export { default as IsTimestampBetween } from './decorators/typeproperty/IsTimestampBetween';
+export { default as IsInPast } from './decorators/typeproperty/datetime/IsInPast';
+export { default as IsInFuture } from './decorators/typeproperty/datetime/IsInFuture';
+export { default as IsDateBetween } from './decorators/typeproperty/datetime/IsDateBetween';
+export { default as IsDateBetweenRelative } from './decorators/typeproperty/datetime/IsDateBetweenRelative';
+export { default as IsTimeBetween } from './decorators/typeproperty/datetime/IsTimeBetween';
+export { default as IsTimestampBetween } from './decorators/typeproperty/datetime/IsTimestampBetween';
+export { default as IsTimestampBetweenRelative } from './decorators/typeproperty/datetime/IsTimestampBetweenRelative';
+export { default as IsYearAndMonthBetween } from './decorators/typeproperty/datetime/IsYearAndMonthBetween';
+export { default as IsYearAndMonthBetweenRelative } from './decorators/typeproperty/datetime/IsYearAndMonthBetweenRelative';
 
 // Root entity base classes
 export { default as Captcha } from './types/Captcha';
