@@ -2,9 +2,51 @@ import { registerDecorator, ValidationOptions } from 'cv-pksilen';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import isLeapYear from 'dayjs/plugin/isLeapYear';
 
 dayjs.extend(isBetween);
 dayjs.extend(isoWeek);
+dayjs.extend(isLeapYear);
+
+const minValues = {
+  year: 1970,
+  month: 0,
+  date: 1,
+  hour: 0,
+  minute: 0,
+};
+
+const maxValues = {
+  year: 9999,
+  month: 11,
+  hour: 23,
+  minute: 59,
+};
+
+function getMaxDate(timestamp: dayjs.Dayjs) {
+  switch (timestamp.month()) {
+    case 0:
+    case 2:
+    case 4:
+    case 6:
+    case 7:
+    case 9:
+    case 11:
+      return 31;
+    case 3:
+    case 5:
+    case 8:
+    case 10:
+      return 30;
+    case 1:
+      if (timestamp.isLeapYear()) {
+        return 29;
+      }
+      return 28;
+    default:
+      throw new Error('Invalid month');
+  }
+}
 
 export type Unit = 'year' | 'month' | 'date' | 'hour' | 'minute' | 'isoDayOfWeek';
 
@@ -29,8 +71,32 @@ export default function IsTimestampBetween(
             return dayOfWeek >= startValue && dayOfWeek <= endValue;
           }
 
-          return date.isBetween(startValue, endValue, unit);
+          let startTimestamp = dayjs();
+          let endTimestamp = dayjs();
+
+          startTimestamp = startTimestamp.set(unit, startValue);
+          endTimestamp = endTimestamp.set(unit, endValue);
+
+          (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((u) => {
+            if (u !== unit) {
+              startTimestamp = startTimestamp.set(unit as any, (minValues as any)[unit]);
+              endTimestamp = endTimestamp.set(
+                unit as any,
+                unit === 'date' ? getMaxDate(endTimestamp) : (maxValues as any)[unit]
+              );
+            }
+          });
+
+          return date.isBetween(startTimestamp, endTimestamp, unit);
         },
+        defaultMessage: () =>
+          propertyName +
+          ' must be a timestamp where ' +
+          unit +
+          ' is between ' +
+          startValue +
+          ' and ' +
+          endValue,
       },
     });
   };
