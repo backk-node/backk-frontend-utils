@@ -20,10 +20,10 @@ export default function IsTimestampBetweenRelative(
       propertyName: propertyName,
       constraints: [
         'isTimestampBetweenRelative',
+        startValueSubtractAmount,
         startValueSubtractUnit,
-        startValueSubtractUnit,
-        endValueAddUnit,
         endValueAddAmount,
+        endValueAddUnit,
       ],
       options: validationOptions,
       validator: {
