@@ -107,8 +107,8 @@ export default function getInputValidationProps<T extends { [key: string]: any }
         uiConstraints = getValidationMetadataConstraints(uiPropertiesMetadata);
       }
 
-      const startTimestamp = dayjs();
-      const endTimestamp = dayjs();
+      let startTimestamp = dayjs();
+      let endTimestamp = dayjs();
       const modifiedUnits: Unit[] = [];
 
       validationMetadatas
@@ -120,16 +120,16 @@ export default function getInputValidationProps<T extends { [key: string]: any }
             return;
           }
 
-          startTimestamp.set(unit, startValue);
-          endTimestamp.set(unit, endValue);
+          startTimestamp = startTimestamp.set(unit, startValue);
+          endTimestamp = endTimestamp.set(unit, endValue);
           // noinspection ReuseOfLocalVariableJS
           modifiedUnits.push(unit);
         });
 
       (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((unit) => {
         if (!modifiedUnits.includes(unit)) {
-          startTimestamp.set(unit as any, (minValues as any)[unit]);
-          endTimestamp.set(unit as any, (maxValues as any)[unit]);
+          startTimestamp = startTimestamp.set(unit as any, (minValues as any)[unit]);
+          endTimestamp = endTimestamp.set(unit as any, (maxValues as any)[unit]);
         }
       });
 
