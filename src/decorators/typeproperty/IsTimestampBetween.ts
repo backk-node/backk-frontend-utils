@@ -77,12 +77,12 @@ export default function IsTimestampBetween(
           startTimestamp = startTimestamp.set(unit, startValue);
           endTimestamp = endTimestamp.set(unit, endValue);
 
-          (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((u) => {
-            if (u !== unit) {
-              startTimestamp = startTimestamp.set(unit as any, (minValues as any)[unit]);
+          (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((otherUnit) => {
+            if (otherUnit !== unit) {
+              startTimestamp = startTimestamp.set(otherUnit as any, (minValues as any)[otherUnit]);
               endTimestamp = endTimestamp.set(
-                unit as any,
-                unit === 'date' ? getMaxDate(endTimestamp) : (maxValues as any)[unit]
+                otherUnit as any,
+                otherUnit === 'date' ? getMaxDate(endTimestamp) : (maxValues as any)[otherUnit]
               );
             }
           });

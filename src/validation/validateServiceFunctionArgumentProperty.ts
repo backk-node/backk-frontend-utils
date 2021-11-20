@@ -54,6 +54,6 @@ export default async function validateServiceFunctionArgumentProperty<
       return getValidationErrors(validationErrors);
     }
 
-    return validationErrors;
+    return validationErrors.message;
   }
 }
