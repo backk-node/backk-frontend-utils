@@ -87,6 +87,18 @@ export default function IsTimestampBetween(
             }
           });
 
+          if (unit === 'hour' || unit === 'minute') {
+            date.set('year', 1970);
+            date.set('month', 0);
+            date.set('date', 1);
+            startTimestamp.set('year', 1970);
+            startTimestamp.set('month', 0);
+            startTimestamp.set('date', 1);
+            endTimestamp.set('year', 1970);
+            endTimestamp.set('month', 0);
+            endTimestamp.set('date', 1);
+          }
+
           return date.isBetween(startTimestamp, endTimestamp, unit);
         },
         defaultMessage: () =>
