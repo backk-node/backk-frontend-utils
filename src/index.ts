@@ -54,6 +54,7 @@ export { default as IsTimestampBetweenRelative } from './decorators/typeproperty
 export { default as IsYearAndMonthBetween } from './decorators/typeproperty/datetime/IsYearAndMonthBetween';
 export { default as IsYearAndMonthBetweenRelative } from './decorators/typeproperty/datetime/IsYearAndMonthBetweenRelative';
 export { default as IsDayOfWeekBetween } from './decorators/typeproperty/datetime/IsDayOfWeekBetween';
+export { DayOfWeek } from './decorators/typeproperty/datetime/IsDayOfWeekBetween';
 
 // Root entity base classes
 export { default as Captcha } from './types/Captcha';
