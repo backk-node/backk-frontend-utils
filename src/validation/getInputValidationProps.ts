@@ -5,7 +5,9 @@ import {
   hasValidationMetadata,
 } from '../utils/getInputType';
 import dayjs from 'dayjs';
+import isLeapYear from 'dayjs/plugin/isLeapYear';
 import { Unit } from '../decorators/typeproperty/IsTimestampBetween';
+dayjs.extend(isLeapYear);
 
 const minValues = {
   year: 1970,
@@ -18,10 +20,34 @@ const minValues = {
 const maxValues = {
   year: 9999,
   month: 11,
-  date: 31,
   hour: 23,
   minute: 59,
 };
+
+function getMaxDate(timestamp: dayjs.Dayjs) {
+  switch (timestamp.month()) {
+    case 0:
+    case 2:
+    case 4:
+    case 6:
+    case 7:
+    case 9:
+    case 11:
+      return 31;
+    case 3:
+    case 5:
+    case 8:
+    case 10:
+      return 30;
+    case 1:
+      if (timestamp.isLeapYear()) {
+        return 29;
+      }
+      return 28;
+    default:
+      throw new Error('Invalid month');
+  }
+}
 
 export default function getInputValidationProps<T extends { [key: string]: any }>(
   ArgumentClass: new () => T,
@@ -129,7 +155,10 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       (['year', 'month', 'date', 'hour', 'minute'] as Unit[]).forEach((unit) => {
         if (!modifiedUnits.includes(unit)) {
           startTimestamp = startTimestamp.set(unit as any, (minValues as any)[unit]);
-          endTimestamp = endTimestamp.set(unit as any, (maxValues as any)[unit]);
+          endTimestamp = endTimestamp.set(
+            unit as any,
+            unit === 'date' ? getMaxDate(endTimestamp) : (maxValues as any)[unit]
+          );
         }
       });
 
