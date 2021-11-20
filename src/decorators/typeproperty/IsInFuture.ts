@@ -13,6 +13,7 @@ export default function IsInFuture(validationOptions?: ValidationOptions) {
         validate(value: any) {
           return dayjs(value).isAfter(dayjs());
         },
+        defaultMessage: () => propertyName + ' must be a timestamp in the future',
       },
     });
   };

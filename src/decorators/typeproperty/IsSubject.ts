@@ -17,6 +17,7 @@ export default function IsSubject(validationOptions?: ValidationOptions) {
           }
           return value.length < Lengths._256 && isAscii(value);
         },
+        defaultMessage: () => propertyName + ' must be an ASCII string less than 256 characters long',
       },
     });
   };

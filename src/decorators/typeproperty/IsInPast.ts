@@ -13,6 +13,7 @@ export default function IsInPast(validationOptions?: ValidationOptions) {
         validate(value: any) {
           return dayjs(value).isBefore(dayjs());
         },
+        defaultMessage: () => propertyName + ' must be a timestamp in the past',
       },
     });
   };
