@@ -66,18 +66,26 @@ export default function getInputType<T extends { [key: string]: any }>(
   ) {
     return 'number';
   } else if (hasValidationMetadata(validationMetadatas, 'isDate')) {
-    if (hasValidationMetadata(validationMetadatas, 'uiProperties')) {
-      const uiPropertiesMetadata = findValidationMetadata(validationMetadatas, 'uiProperties');
-      const constraints = getValidationMetadataConstraints(uiPropertiesMetadata);
-      if (constraints[0].isMonthAndYearOnly) {
-        return 'month';
-      } else if (constraints[0].isDateOnly) {
-        return 'date';
-      } else if (constraints[0].isTimeOnly) {
-        return 'time';
-      } else {
-        return 'datetime-local';
-      }
+    const isDateBetweenValidationMetadata = findValidationMetadata(validationMetadatas, 'isDateBetween');
+    const isDateBetweenRelativeValidationMetadata = findValidationMetadata(
+      validationMetadatas,
+      'isDateBetweenRelative'
+    );
+    const isTimeBetweenValidationMetadata = findValidationMetadata(validationMetadatas, 'isTimeBetween');
+    const isYearAndMonthBetweenValidationMetadata = findValidationMetadata(
+      validationMetadatas,
+      'isYearAndMonthBetween'
+    );
+    const isYearAndMonthBetweenRelativeValidationMetadata = findValidationMetadata(
+      validationMetadatas,
+      'isYearAndMonthBetweenRelative'
+    );
+    if (isYearAndMonthBetweenValidationMetadata || isYearAndMonthBetweenRelativeValidationMetadata) {
+      return 'month';
+    } else if (isDateBetweenValidationMetadata || isDateBetweenRelativeValidationMetadata) {
+      return 'date';
+    } else if (isTimeBetweenValidationMetadata) {
+      return 'time';
     } else {
       return 'datetime-local';
     }

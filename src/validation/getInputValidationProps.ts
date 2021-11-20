@@ -87,8 +87,6 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       validationMetadatas,
       'isDateBetweenRelative'
     );
-    const isInFutureValidationMetadata = findValidationMetadata(validationMetadatas, 'isInFuture');
-    const isInPastValidationMetadata = findValidationMetadata(validationMetadatas, 'isInPast');
     const isTimeBetweenValidationMetadata = findValidationMetadata(validationMetadatas, 'isTimeBetween');
     const isTimestampBetweenValidationMetadata = findValidationMetadata(
       validationMetadatas,
