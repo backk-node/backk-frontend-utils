@@ -46,8 +46,6 @@ export { default as MinMax } from './decorators/typeproperty/MinMax';
 export { default as ShouldBeTrue } from './decorators/typeproperty/ShouldBeTrue';
 export { default as ShouldBeTrueForObject } from './decorators/typeproperty/ShouldBeTrueForObject';
 export { default as AcceptFileTypes } from './decorators/typeproperty/AcceptFileTypes';
-export { default as IsInPast } from './decorators/typeproperty/datetime/IsInPast';
-export { default as IsInFuture } from './decorators/typeproperty/datetime/IsInFuture';
 export { default as IsDateBetween } from './decorators/typeproperty/datetime/IsDateBetween';
 export { default as IsDateBetweenRelative } from './decorators/typeproperty/datetime/IsDateBetweenRelative';
 export { default as IsTimeBetween } from './decorators/typeproperty/datetime/IsTimeBetween';

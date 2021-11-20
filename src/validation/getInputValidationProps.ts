@@ -82,18 +82,11 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       inputValidationProps.max = getValidationMetadataConstraints(minMaxValidation)[1];
     }
   } else if (hasValidationMetadata(validationMetadatas, 'isDate')) {
-    const uiPropertiesMetadata = findValidationMetadata(validationMetadatas, 'uiProperties');
-    let uiConstraints;
-    if (uiPropertiesMetadata) {
-      uiConstraints = getValidationMetadataConstraints(uiPropertiesMetadata);
-    }
-
     const isDateBetweenValidationMetadata = findValidationMetadata(validationMetadatas, 'isDateBetween');
     const isDateBetweenRelativeValidationMetadata = findValidationMetadata(
       validationMetadatas,
       'isDateBetweenRelative'
     );
-    const isTimeValidationMetadata = findValidationMetadata(validationMetadatas, 'isTimeBetween');
     const isInFutureValidationMetadata = findValidationMetadata(validationMetadatas, 'isInFuture');
     const isInPastValidationMetadata = findValidationMetadata(validationMetadatas, 'isInPast');
     const isTimeBetweenValidationMetadata = findValidationMetadata(validationMetadatas, 'isTimeBetween');
@@ -114,63 +107,41 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       'isYearAndMonthBetweenRelative'
     );
 
-    if (uiConstraints?.[0].isMonthAndYearOnly) {
-      if (isInPastValidationMetadata) {
-        inputValidationProps.max = dayjs().format('YYYY-MM');
-      } else if (isInFutureValidationMetadata) {
-        inputValidationProps.min = dayjs().format('YYYY-MM');
-      } else if (isYearAndMonthBetweenValidationMetadata) {
-        inputValidationProps.min = isYearAndMonthBetweenValidationMetadata.constraints[1];
-        inputValidationProps.max = isYearAndMonthBetweenValidationMetadata.constraints[2];
-      } else if (isYearAndMonthBetweenRelativeValidationMetadata) {
-        const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
-          isYearAndMonthBetweenRelativeValidationMetadata.constraints;
-        const startDate = dayjs()
-          .subtract(startValueSubtractAmount, startValueSubtractUnit)
-          .format('YYYY-MM');
-        const endDate = dayjs().add(endValueAddAmount, endValueAddUnit).format('YYYY-MM');
-        inputValidationProps.min = startDate;
-        inputValidationProps.max = endDate;
-      }
-    } else if (uiConstraints?.[0].isDateOnly) {
-      if (isInPastValidationMetadata) {
-        inputValidationProps.max = dayjs().subtract(1, 'date').format('YYYY-MM-DD');
-      } else if (isInFutureValidationMetadata) {
-        inputValidationProps.min = dayjs().add(1, 'date').format('YYYY-MM');
-      } else if (isDateBetweenValidationMetadata) {
-        inputValidationProps.min = isDateBetweenValidationMetadata.constraints[1];
-        inputValidationProps.max = isDateBetweenValidationMetadata.constraints[2];
-      } else if (isDateBetweenRelativeValidationMetadata) {
-        const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
-          isDateBetweenRelativeValidationMetadata.constraints;
-        const startDate = dayjs()
-          .subtract(startValueSubtractAmount, startValueSubtractUnit)
-          .format('YYYY-MM-DD');
-        const endDate = dayjs().add(endValueAddAmount, endValueAddUnit).format('YYYY-MM-DD');
-        inputValidationProps.min = startDate;
-        inputValidationProps.max = endDate;
-      }
-    } else if (uiConstraints?.[0].isTimeOnly) {
-      if (isTimeValidationMetadata) {
-        inputValidationProps.min = isTimeValidationMetadata.constraints[1];
-        inputValidationProps.max = isTimeValidationMetadata.constraints[2];
-      }
-    } else {
-      if (isInPastValidationMetadata) {
-        inputValidationProps.max = dayjs();
-      } else if (isInFutureValidationMetadata) {
-        inputValidationProps.min = dayjs();
-      } else if (isTimestampBetweenValidationMetadata) {
-        inputValidationProps.min = isTimestampBetweenValidationMetadata.constraints[1];
-        inputValidationProps.max = isTimestampBetweenValidationMetadata.constraints[2];
-      } else if (isTimestampBetweenRelativeValidationMetadata) {
-        const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
-          isTimestampBetweenRelativeValidationMetadata.constraints;
-        const startDate = dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit);
-        const endDate = dayjs().add(endValueAddAmount, endValueAddUnit);
-        inputValidationProps.min = startDate;
-        inputValidationProps.max = endDate;
-      }
+    if (isYearAndMonthBetweenValidationMetadata) {
+      inputValidationProps.min = isYearAndMonthBetweenValidationMetadata.constraints[1];
+      inputValidationProps.max = isYearAndMonthBetweenValidationMetadata.constraints[2];
+    } else if (isYearAndMonthBetweenRelativeValidationMetadata) {
+      const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
+        isYearAndMonthBetweenRelativeValidationMetadata.constraints;
+      const startDate = dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit).format('YYYY-MM');
+      const endDate = dayjs().add(endValueAddAmount, endValueAddUnit).format('YYYY-MM');
+      inputValidationProps.min = startDate;
+      inputValidationProps.max = endDate;
+    } else if (isDateBetweenValidationMetadata) {
+      inputValidationProps.min = isDateBetweenValidationMetadata.constraints[1];
+      inputValidationProps.max = isDateBetweenValidationMetadata.constraints[2];
+    } else if (isDateBetweenRelativeValidationMetadata) {
+      const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
+        isDateBetweenRelativeValidationMetadata.constraints;
+      const startDate = dayjs()
+        .subtract(startValueSubtractAmount, startValueSubtractUnit)
+        .format('YYYY-MM-DD');
+      const endDate = dayjs().add(endValueAddAmount, endValueAddUnit).format('YYYY-MM-DD');
+      inputValidationProps.min = startDate;
+      inputValidationProps.max = endDate;
+    } else if (isTimeBetweenValidationMetadata) {
+      inputValidationProps.min = isTimeBetweenValidationMetadata.constraints[1];
+      inputValidationProps.max = isTimeBetweenValidationMetadata.constraints[2];
+    } else if (isTimestampBetweenValidationMetadata) {
+      inputValidationProps.min = isTimestampBetweenValidationMetadata.constraints[1];
+      inputValidationProps.max = isTimestampBetweenValidationMetadata.constraints[2];
+    } else if (isTimestampBetweenRelativeValidationMetadata) {
+      const [, startValueSubtractAmount, startValueSubtractUnit, endValueAddAmount, endValueAddUnit] =
+        isTimestampBetweenRelativeValidationMetadata.constraints;
+      const startDate = dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit);
+      const endDate = dayjs().add(endValueAddAmount, endValueAddUnit);
+      inputValidationProps.min = startDate;
+      inputValidationProps.max = endDate;
     }
   }
 
