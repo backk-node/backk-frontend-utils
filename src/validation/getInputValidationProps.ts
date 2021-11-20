@@ -83,12 +83,13 @@ export default function getInputValidationProps<T extends { [key: string]: any }
       inputValidationProps.max = getValidationMetadataConstraints(minMaxValidation)[1];
     }
   } else if (hasValidationMetadata(validationMetadatas, 'isDate')) {
-    if (
-      hasValidationMetadata(validationMetadatas, 'uiProperties') &&
-      hasValidationMetadata(validationMetadatas, 'isTimestampBetween')
-    ) {
+    if (hasValidationMetadata(validationMetadatas, 'isTimestampBetween')) {
       const uiPropertiesMetadata = findValidationMetadata(validationMetadatas, 'uiProperties');
-      const uiConstraints = getValidationMetadataConstraints(uiPropertiesMetadata);
+
+      let uiConstraints;
+      if (uiPropertiesMetadata) {
+        uiConstraints = getValidationMetadataConstraints(uiPropertiesMetadata);
+      }
 
       const startTimestamp = dayjs();
       startTimestamp.set('hour', 0);
@@ -116,13 +117,13 @@ export default function getInputValidationProps<T extends { [key: string]: any }
         });
 
       if (isModified) {
-        if (uiConstraints[0].isMonthAndYearOnly) {
+        if (uiConstraints?.[0].isMonthAndYearOnly) {
           inputValidationProps.min = startTimestamp.format('YYYY-MM');
           inputValidationProps.max = endTimestamp.format('YYYY-MM');
-        } else if (uiConstraints[0].isDateOnly) {
+        } else if (uiConstraints?.[0].isDateOnly) {
           inputValidationProps.min = startTimestamp.format('YYYY-MM-DD');
           inputValidationProps.max = endTimestamp.format('YYYY-MM-DD');
-        } else if (uiConstraints[0].isTimeOnly) {
+        } else if (uiConstraints?.[0].isTimeOnly) {
           inputValidationProps.min = startTimestamp.format('HH:mm');
           inputValidationProps.max = endTimestamp.format('HH:mm');
         } else {
