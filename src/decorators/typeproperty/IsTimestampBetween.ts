@@ -65,7 +65,7 @@ export default function IsTimestampBetween(
       options: validationOptions,
       validator: {
         validate(value: any) {
-          const date = dayjs(value);
+          let date = dayjs(value);
           if (unit === 'isoDayOfWeek') {
             const dayOfWeek = date.isoWeekday();
             return dayOfWeek >= startValue && dayOfWeek <= endValue;
@@ -88,15 +88,15 @@ export default function IsTimestampBetween(
           });
 
           if (unit === 'hour' || unit === 'minute') {
-            date.set('year', 1970);
-            date.set('month', 0);
-            date.set('date', 1);
-            startTimestamp.set('year', 1970);
-            startTimestamp.set('month', 0);
-            startTimestamp.set('date', 1);
-            endTimestamp.set('year', 1970);
-            endTimestamp.set('month', 0);
-            endTimestamp.set('date', 1);
+            date = date.set('year', 1970);
+            date = date.set('month', 0);
+            date = date.set('date', 1);
+            startTimestamp = startTimestamp.set('year', 1970);
+            startTimestamp = startTimestamp.set('month', 0);
+            startTimestamp = startTimestamp.set('date', 1);
+            endTimestamp = endTimestamp.set('year', 1970);
+            endTimestamp = endTimestamp.set('month', 0);
+            endTimestamp = endTimestamp.set('date', 1);
           }
 
           return date.isBetween(startTimestamp, endTimestamp, unit);
