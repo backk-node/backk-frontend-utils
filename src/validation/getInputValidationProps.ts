@@ -138,8 +138,8 @@ export default function getInputValidationProps<T extends { [key: string]: any }
         isTimestampBetweenRelativeValidationMetadata.constraints;
       const startDate = dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit);
       const endDate = dayjs().add(endValueAddAmount, endValueAddUnit);
-      inputValidationProps.min = startDate;
-      inputValidationProps.max = endDate;
+      inputValidationProps.min = startDate.format('YYYY-MM-DD') + 'T' + startDate.format('HH:mm');
+      inputValidationProps.max = endDate.format('YYYY-MM-DD') + 'T' + endDate.format('HH:mm');
     }
   }
 

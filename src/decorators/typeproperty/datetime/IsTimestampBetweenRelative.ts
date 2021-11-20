@@ -37,9 +37,9 @@ export default function IsTimestampBetweenRelative(
           propertyName +
           ' must be a timestamp where ' +
           'year and month is between ' +
-          dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit) +
+          dayjs().subtract(startValueSubtractAmount, startValueSubtractUnit).format('YYYY-MM-DD HH:mm') +
           ' and ' +
-          dayjs().add(endValueAddAmount, endValueAddUnit),
+          dayjs().add(endValueAddAmount, endValueAddUnit).format('YYYY-MM-DD HH:mm'),
       },
     });
   };
