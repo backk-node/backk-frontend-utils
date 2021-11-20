@@ -3,7 +3,7 @@ import {
   findValidationMetadata,
   getValidationMetadataConstraints,
   hasValidationMetadata,
-} from './getInputType';
+} from '../utils/getInputType';
 import dayjs from 'dayjs';
 
 export default function getInputValidationProps<T extends { [key: string]: any }>(
@@ -106,8 +106,6 @@ export default function getInputValidationProps<T extends { [key: string]: any }
         inputValidationProps.min = startValue;
         inputValidationProps.max = endValue;
       }
-    } else {
-      return 'datetime-local';
     }
   }
 
