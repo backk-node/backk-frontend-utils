@@ -55,6 +55,10 @@ export { default as IsYearAndMonthBetween } from './decorators/typeproperty/date
 export { default as IsYearAndMonthBetweenRelative } from './decorators/typeproperty/datetime/IsYearAndMonthBetweenRelative';
 export { default as IsDayOfWeekBetween } from './decorators/typeproperty/datetime/IsDayOfWeekBetween';
 export { DayOfWeek } from './decorators/typeproperty/datetime/IsDayOfWeekBetween';
+export { default as IsMinuteIn } from './decorators/typeproperty/datetime/IsMinuteIn';
+export { default as IsHourIn } from './decorators/typeproperty/datetime/IsHourIn';
+export { default as IsDayOfMonthIn } from './decorators/typeproperty/datetime/IsDayOfMonthIn';
+export { default as IsMonthIn } from './decorators/typeproperty/datetime/IsMonthIn';
 
 // Root entity base classes
 export { default as Captcha } from './types/Captcha';
