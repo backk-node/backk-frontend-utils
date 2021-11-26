@@ -11,7 +11,7 @@ export { default as getInputValidationProps } from './validation/getInputValidat
 export { default as getSelectInputPossibleValues } from './utils/getSelectInputPossibleValues';
 export { default as isMultipleSelectInput } from './utils/isMultipleSelectInput';
 export { default as shouldPropertyBePresent } from './utils/shouldPropertyBePresent';
-export { default as isBuiltIntTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';
+export { default as isBuiltInTypeArrayProperty } from './utils/isBuiltInTypeArrayProperty';
 export { default as isObjectProperty } from './utils/isObjectProperty';
 export { default as IsOptionalProperty } from './utils/isOptionalProperty';
 export { default as removeUnchangedProperties } from './utils/removeUnchangedProperties';
