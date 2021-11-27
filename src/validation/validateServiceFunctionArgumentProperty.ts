@@ -23,7 +23,12 @@ export default async function validateServiceFunctionArgumentProperty<
       updateValidationMetadata();
     }
 
-    const serviceFunctionArgument = { [propertyName]: propertyValue };
+    let validatablePropertyValue = propertyValue;
+    if (Array.isArray(propertyValue)) {
+      validatablePropertyValue = propertyValue.filter((v: any) => v !== undefined);
+    }
+
+    const serviceFunctionArgument = { [propertyName]: validatablePropertyValue };
     const serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);
     Object.keys(serviceFunctionArgumentInstance).forEach((propName) => {
       if (propName !== propertyName) {
