@@ -10,16 +10,6 @@ import {
 } from './validateServiceFunctionArgument';
 import shouldPropertyBePresent from '../utils/shouldPropertyBePresent';
 
-export function removeUndefinedFromArrays(serviceFunctionArgument: any) {
-  Object.entries(serviceFunctionArgument).forEach(([propertyName, propertyValue]: [any, any]) => {
-    if (Array.isArray(propertyValue)) {
-      serviceFunctionArgument[propertyName] = propertyValue.filter((v) => v !== undefined);
-    } else if (typeof propertyValue === 'object') {
-      removeUndefinedFromArrays(propertyValue);
-    }
-  });
-}
-
 export default async function validateServiceFunctionArgumentOrThrow<T extends object>(
   serviceFunctionArgument: T | Partial<T>,
   ArgumentClass: new () => T,
@@ -29,10 +19,6 @@ export default async function validateServiceFunctionArgumentOrThrow<T extends o
     if (!isValidationMetadataUpdated) {
       updateValidationMetadata();
     }
-
-    // noinspection AssignmentToFunctionParameterJS
-    serviceFunctionArgument = cloneDeep(serviceFunctionArgument);
-    removeUndefinedFromArrays(serviceFunctionArgument);
 
     let serviceFunctionArgumentInstance = serviceFunctionArgument;
     if (serviceFunctionArgument.constructor === Object) {

@@ -15,6 +15,7 @@ export { default as isBuiltInTypeArrayProperty } from './utils/isBuiltInTypeArra
 export { default as isObjectProperty } from './utils/isObjectProperty';
 export { default as IsOptionalProperty } from './utils/isOptionalProperty';
 export { default as removeUnchangedProperties } from './utils/removeUnchangedProperties';
+export { default as getInstanceWithUndefinedRemovedFromArrays } from './utils/getInstanceWithUndefinedRemovedFromArrays';
 
 export { Values, Lengths, Durations } from './constants/constants';
 export { MAX_INT_VALUE } from './constants/constants';
