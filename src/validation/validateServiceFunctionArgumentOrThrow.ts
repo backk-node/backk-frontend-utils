@@ -1,7 +1,8 @@
-import { ServiceFunctionType } from '../callRemoteService';
-import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 import { plainToClass } from 'class-transformer';
 import { validateOrReject, ValidationError } from 'cv-pksilen';
+import cloneDeep from 'lodash/cloneDeep';
+import { ServiceFunctionType } from '../callRemoteService';
+import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 import {
   filterOutManyToManyIdErrors,
   getValidationErrorConstraintsCount,
@@ -9,7 +10,7 @@ import {
 } from './validateServiceFunctionArgument';
 import shouldPropertyBePresent from '../utils/shouldPropertyBePresent';
 
-function removeUndefinedFromArrays(serviceFunctionArgument: any) {
+export function removeUndefinedFromArrays(serviceFunctionArgument: any) {
   Object.entries(serviceFunctionArgument).forEach(([propertyName, propertyValue]: [any, any]) => {
     if (Array.isArray(propertyValue)) {
       serviceFunctionArgument[propertyName] = propertyValue.filter((v) => v !== undefined);
@@ -29,7 +30,10 @@ export default async function validateServiceFunctionArgumentOrThrow<T extends o
       updateValidationMetadata();
     }
 
+    // noinspection AssignmentToFunctionParameterJS
+    serviceFunctionArgument = cloneDeep(serviceFunctionArgument);
     removeUndefinedFromArrays(serviceFunctionArgument);
+
     let serviceFunctionArgumentInstance = serviceFunctionArgument;
     if (serviceFunctionArgument.constructor === Object) {
       serviceFunctionArgumentInstance = plainToClass(ArgumentClass, serviceFunctionArgument);

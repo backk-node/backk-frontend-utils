@@ -3,6 +3,8 @@ import { ServiceFunctionType } from '../callRemoteService';
 import { plainToClass } from 'class-transformer';
 import updateValidationMetadata, { isValidationMetadataUpdated } from './updateValidationMetadata';
 import shouldPropertyBePresent from '../utils/shouldPropertyBePresent';
+import cloneDeep from 'lodash/cloneDeep';
+import { removeUndefinedFromArrays } from './validateServiceFunctionArgumentOrThrow';
 
 export function filterOutManyToManyIdErrors(validationErrors: ValidationError[]) {
   validationErrors.forEach((validationError) => {
@@ -62,6 +64,10 @@ export default async function validateServiceFunctionArgument<T extends object>(
     if (!isValidationMetadataUpdated) {
       updateValidationMetadata();
     }
+
+    // noinspection AssignmentToFunctionParameterJS
+    serviceFunctionArgument = cloneDeep(serviceFunctionArgument);
+    removeUndefinedFromArrays(serviceFunctionArgument);
 
     let serviceFunctionArgumentInstance = serviceFunctionArgument;
     if (serviceFunctionArgument.constructor === Object) {
