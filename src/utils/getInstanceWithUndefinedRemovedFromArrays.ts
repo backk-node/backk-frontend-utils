@@ -11,5 +11,7 @@ function removeUndefinedFromArrays(instance: any) {
 }
 
 export default function getInstanceWithUndefinedRemovedFromArrays(instance: any) {
-  return removeUndefinedFromArrays(cloneDeep(instance));
+  const clonedInstance = cloneDeep(instance);
+  removeUndefinedFromArrays(clonedInstance);
+  return clonedInstance;
 }
