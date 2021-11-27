@@ -10,7 +10,7 @@ function removeUndefinedFromArrays(instance: any) {
   });
 }
 
-export default function getInstanceWithUndefinedRemovedFromArrays(instance: any) {
+export default function getInstanceWithUndefinedRemovedFromArrays(instance: any): any {
   const clonedInstance = cloneDeep(instance);
   removeUndefinedFromArrays(clonedInstance);
   return clonedInstance;
