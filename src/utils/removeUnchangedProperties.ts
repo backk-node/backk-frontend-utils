@@ -9,7 +9,8 @@ export default function removeUnchangedProperties<T extends { [key: string]: any
       (newInstance[propertyName] === '' ||
         isEqual(newInstance[propertyName], currentInstance[propertyName])) &&
       propertyName !== '_id' &&
-      propertyName !== 'version'
+      propertyName !== 'version' &&
+      propertyName !== 'userAccountId'
     ) {
       delete newInstance[propertyName];
     }
