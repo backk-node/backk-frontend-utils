@@ -6,8 +6,7 @@ export default function removeUnchangedProperties<T extends { [key: string]: any
 ) {
   Object.keys(newInstance).forEach((propertyName) => {
     if (
-      (newInstance[propertyName] === '' ||
-        isEqual(newInstance[propertyName], currentInstance[propertyName])) &&
+      (newInstance[propertyName] === '' || newInstance[propertyName] === currentInstance[propertyName]) &&
       propertyName !== '_id' &&
       propertyName !== 'version' &&
       propertyName !== 'userAccountId'
