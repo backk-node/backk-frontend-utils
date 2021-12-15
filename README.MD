@@ -14,12 +14,12 @@ npm install --save --save-exact backk-frontend-utils
 
 ```ts
 function getInputType<T extends { [key: string]: any }>(
-  ArgumentClass: new () => T,
+  Class: new () => T,
   propertyName: keyof T
 ): string 
 ```
 
-Gets the input type for `ArgumentClass` and property with name `propertyName`
+Gets the input type for property `propertyName` of class `Class`
 
 Possible return values are:
 - text
@@ -51,10 +51,31 @@ The `instance` supplied in argument is not changed.
 
 ```ts
 function getSelectInputPossibleValues<T extends { [key: string]: any }>(
-  ArgumentClass: new () => T,
+  Class: new () => T,
   propertyName: keyof T
 ) 
 ```
 
-When property `propertyName` of `ArgumentClass` has input type 'select', this function returns the possible values allowed for the property.
+When property `propertyName` of class `Class` has input type 'select', this function returns the possible values allowed for the property.
 
+### isBuiltInTypeArrayProperty
+
+```ts
+function isBuiltInTypeArrayProperty<T extends { [key: string]: any }>(
+  Class: new () => T,
+  propertyName: keyof T
+)
+```
+
+Returns true if the property `propertyName` of class `Class` is an array of a built-in type (number[], string[], boolean[])
+
+### isMultipleSelectInput
+
+```ts
+function isMultipleSelectInput<T extends Record<string, any>>(
+  Class: new () => T,
+  propertyName: keyof T
+)
+```
+
+Returns true if the input rendered for the property `propertyName` of class `Class` should be a multiple select input. 

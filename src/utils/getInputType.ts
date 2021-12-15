@@ -20,11 +20,11 @@ export function getValidationMetadataConstraints(validationMetadata: any) {
 }
 
 export default function getInputType<T extends { [key: string]: any }>(
-  ArgumentClass: new () => T,
+  Class: new () => T,
   propertyName: keyof T
 ): string {
   const validationMetadatas = getMetadataStorage()
-    .getTargetValidationMetadatas(ArgumentClass, '', false, false)
+    .getTargetValidationMetadatas(Class, '', false, false)
     .filter((validationMetadata) => validationMetadata.propertyName === propertyName);
 
   if (hasValidationMetadata(validationMetadatas, 'isStringOrObjectId')) {
@@ -93,7 +93,5 @@ export default function getInputType<T extends { [key: string]: any }>(
     return 'select';
   }
 
-  throw new Error(
-    ArgumentClass.name + '.' + propertyName + ': There is not any input type for this property type.'
-  );
+  throw new Error(Class.name + '.' + propertyName + ': There is not any input type for this property type.');
 }
