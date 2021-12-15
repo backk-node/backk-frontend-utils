@@ -1,5 +1,3 @@
-import isEqual from 'lodash/isEqual';
-
 export default function removeUnchangedProperties<T extends { [key: string]: any }>(
   newInstance: T,
   currentInstance: T
