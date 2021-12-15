@@ -19,6 +19,23 @@ export function getValidationMetadataConstraints(validationMetadata: any) {
   return validationMetadata.constraints;
 }
 
+export type InputType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'search'
+  | 'tel'
+  | 'url'
+  | 'color'
+  | 'file'
+  | 'checkbox'
+  | 'number'
+  | 'month'
+  | 'date'
+  | 'time'
+  | 'datetime-local'
+  | 'select';
+
 export default function getInputType<T extends { [key: string]: any }>(
   Class: new () => T,
   propertyName: keyof T
