@@ -5,7 +5,7 @@ export { default as validateServiceFunctionArgument } from './validation/validat
 export { default as validateServiceFunctionArgumentOrThrow } from './validation/validateServiceFunctionArgumentOrThrow';
 export { default as validateServiceFunctionArgumentProperty } from './validation/validateServiceFunctionArgumentProperty';
 export { default as getValidationMessage } from './validation/getValidationMessage';
-export { default as getValidationMessageClassNames } from './validation/getValidationMessageClassNames';
+export { default as getValidationMessageHtmlClassNames } from './validation/getValidationMessageHtmlClassNames';
 export { default as getInputType } from './utils/getInputType';
 export { default as getInputValidationProps } from './validation/getInputValidationProps';
 export { default as getSelectInputPossibleValues } from './utils/getSelectInputPossibleValues';
